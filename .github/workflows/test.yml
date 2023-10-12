@@ -28,5 +28,5 @@ jobs:
       - name: Run a one-line script
         run: | 
           gcc --version
-          gcc main.c -o a.exe
-          a.exe
+          gcc main.c 
+          ./a
