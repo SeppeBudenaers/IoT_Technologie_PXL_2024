@@ -26,7 +26,9 @@ jobs:
 
       # Preparing your environment for cross-compiling
       - name: Preparing environment.
-        run: apt install --yes {gcc,binutils}-arm-linux-gnueabihf
+        run: |
+        id -a
+        sudo apt install --yes {gcc,binutils}-arm-linux-gnueabihf
       # Crosscompiling for PYNQ Z2
       - name: Cross compiling (PYNQ Z2)
         run: | 
