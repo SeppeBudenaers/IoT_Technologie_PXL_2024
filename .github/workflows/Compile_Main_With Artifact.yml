@@ -1,5 +1,5 @@
 # This is a basic workflow to help you get started with Actions
-name : Compile main.c
+name : Compile main.c to PYNQ Z2 + artifacrt
 
 # Controls when the workflow will run
 on:
@@ -24,9 +24,20 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      # Runs a single command using the runners shell
-      - name: Compiling
+      # Preparing your environment for cross-compiling
+      - name: Preparing environment.
+        run: |
+          id -a
+          sudo apt install --yes {gcc,binutils}-arm-linux-gnueabihf
+      # Crosscompiling for PYNQ Z2
+      - name: Cross compiling (PYNQ Z2)
         run: | 
-          gcc --version
-          gcc main.c -o main.exe
-          ./main.exe
+          arm-linux-gnueabihf-gcc -o out.exe main.c
+          file out.exe
+          
+       - name: Upload Artifact
+         uses: actions/upload-artifact@v3
+         with:
+            name: my-artifact
+            path: out.exe
+            retention-days: 5
