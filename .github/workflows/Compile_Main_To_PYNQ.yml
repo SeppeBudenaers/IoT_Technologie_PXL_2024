@@ -34,7 +34,9 @@ jobs:
         run: | 
           arm-linux-gnueabihf-gcc -o out.exe main.c
           file out.exe
-      - uses: actions/upload-artifact@v3
-        with:
-          name: my-artifact
-          path: Out.exe
+       - name: Upload Artifact
+         uses: actions/upload-artifact@v3
+         with:
+            name: my-artifact
+            path: out.exe
+            retention-days: 5
