@@ -21,8 +21,7 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
+
 
       # Preparing your environment for cross-compiling
       - name: Preparing environment.
@@ -34,6 +33,7 @@ jobs:
         run: | 
           arm-linux-gnueabihf-gcc -o out.exe main.c
           file out.exe
+
        - name: Upload Artifact
          uses: actions/upload-artifact@v3
          with:
