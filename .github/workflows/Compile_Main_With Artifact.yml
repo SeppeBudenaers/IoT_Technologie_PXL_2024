@@ -23,12 +23,6 @@ jobs:
         run: | 
           arm-linux-gnueabihf-gcc -o out.exe main.c
           file out.exe
-
-      # adding the exe premisions
-      - name: Chmodding
-        run: |
-         id -a
-         sudo chmod +x ./out.exe
          
       # uploading artifact
       - name: Upload Artifact
