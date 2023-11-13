@@ -12,3 +12,4 @@ tar -[arg] [output] [input]
 | extract tar             | xzf       |
 | compress tar            | zcf       |
 
+### [how to package](https://wiki.debian.org/Packaging/Intro)
