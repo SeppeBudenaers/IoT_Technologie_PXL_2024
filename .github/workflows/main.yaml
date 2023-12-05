@@ -27,4 +27,5 @@ jobs:
         with:
           context: ./Docker
           push: true
+          platform: linux/arm64 
           tags: ${{ secrets.DOCKER_USERNAME }}/iot:latest
