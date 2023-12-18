@@ -2,6 +2,6 @@
 FROM python:latest
 #* Copying the main.py into the /usr/app/src/main.py
 WORKDIR /usr/app/src
-COPY main.py ./
+COPY *.py ./
 #* running it
 CMD [ "python","./main.py" ]
