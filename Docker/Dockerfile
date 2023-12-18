@@ -4,4 +4,5 @@ FROM python:latest
 WORKDIR /usr/app/src
 COPY *.py ./
 #* running it
+RUN "pip install machine"
 CMD [ "python","./main.py" ]
