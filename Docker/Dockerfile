@@ -6,7 +6,7 @@ WORKDIR /usr/app/src
 COPY *.py ./
 
 # Installing required packages
-RUN pip install RPi.GPIO
+RUN pip install micropython-machine
 
 # Running the script
 CMD [ "python","./main.py" ]
