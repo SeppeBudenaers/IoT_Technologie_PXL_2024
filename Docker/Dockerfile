@@ -6,7 +6,7 @@ WORKDIR /usr/app/src
 COPY *.py ./
 
 # Installing required packages
-RUN pip3 install machine
+RUN pip install RPi.GPIO
 
 # Running the script
 CMD [ "python","./main.py" ]
