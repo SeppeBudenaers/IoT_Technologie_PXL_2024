@@ -6,7 +6,7 @@ WORKDIR /usr/app/src
 COPY *.py ./
 
 # Installing required packages
-RUN pip install machine
+RUN pip3 install machine
 
 # Running the script
 CMD [ "python","./main.py" ]
