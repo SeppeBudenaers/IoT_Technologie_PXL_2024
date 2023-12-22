@@ -1,5 +1,8 @@
 # Use the latest python docker base
-FROM micropython/build-micropython-arm
+FROM python:latest
+
+RUN apt-get update && apt-get install -y \
+    python3-rpi.gpio
 
 # Copying the main.py into the /usr/app/src/main.py
 WORKDIR /usr/app/src
