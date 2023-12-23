@@ -9,7 +9,7 @@ def GetAPIKEYOS():
     except KeyError:
         print(f"Enviormental Key Does not exist")
 
-def GetAPIKEYOS():
+def GetAPIKEYARG():
     parser = argparse.ArgumentParser(description='IOT program')
     parser.add_argument('API_KEY', metavar='API_KEY',type=str, help='enter your API key')
     args = parser.parse_args()
@@ -25,7 +25,8 @@ def GetAPIKEYFile(file_path):
     except Exception as e:
         print(f"An error occurred: {e}")
 
-API_key =GetAPIKEYFile("./secretfile.txt")
+API_key = GetAPIKEYFile("./secretfile.txt")
+print(API_KEY)
 
 url = 'http://iot.pxl.bjth.xyz/api/v1/temperature' 
 data = {
@@ -37,11 +38,8 @@ data = {
  "scale": "F"
 
 }
-headers = {
-    'X-Api-Key': API_key,
-    'Content-Type': 'application/json'
-}
 
-response = requests.put(url, headers=headers, json=data)
+
+response = requests.put(url, json=data,"-H 'X-Api-Key: "+str(API_KEY))
 
 print(response)
