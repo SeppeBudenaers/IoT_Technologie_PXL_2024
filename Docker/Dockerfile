@@ -6,7 +6,8 @@ COPY ./Docker/main.py ./
 
 #*Adding API KEY
 RUN --mount=type=secret,id=API,target=/usr/app/src/secret \
-API=$(cat /usr/app/src/secret)
+API=$(cat /usr/app/src/secret)\
+$API > ./secretfile.txt
 ENV API_KEY=$API
 
 #adding libraries
