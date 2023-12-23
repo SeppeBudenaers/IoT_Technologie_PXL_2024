@@ -5,6 +5,7 @@ import os
 
 def GetAPIKEYOS():
     try:
+        print(os.environ)
         API_KEY = os.environ.get('API_KEY')
         return API_KEY
     except KeyError:
