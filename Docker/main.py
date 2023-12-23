@@ -1,14 +1,9 @@
-def read_and_print_file(file_path):
-    try:
-        with open(file_path, 'r') as file:
-            content = file.read()
-            print(content)
-    except FileNotFoundError:
-        print(f"File not found: {file_path}")
-    except Exception as e:
-        print(f"An error occurred: {e}")
+import argparse 
 
-file_path = 'secretfile.txt'
-read_and_print_file(file_path)  
+parser = argparse.ArgumentParser(description='IOT program')
+parser.add_argument('API_KEY', metavar='API_KEY',type=str, help='enter your API key')
+args = parser.parse_args()
 
-print("I have a mental break down")
+API_KEY = args.API_KEY
+
+print(API_KEY)
