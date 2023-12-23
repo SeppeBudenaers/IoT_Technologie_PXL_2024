@@ -38,8 +38,8 @@ data = {
  "scale": "F"
 
 }
-
-
-response = requests.put(url, json=data,"-H 'X-Api-Key: "+str(API_KEY))
+Header = "-H 'X-Api-Key: "+str(API_KEY)
+print(API_KEY)
+response = requests.put(url, json=data,Header)
 
 print(response)
