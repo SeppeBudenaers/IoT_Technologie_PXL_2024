@@ -10,5 +10,5 @@ COPY ./Docker/main.py ./
 # Create a JSON file with your data
 
 RUN echo '{"id": "$(date +%s)", "value": 123.45, "scale": "F"}' > data.json
-#*CMD ["sh", "-c", "curl -X PUT -H 'X-Api-Key: $(cat /usr/app/src/secret)' -d @data.json  iot.pxl.bjth.xyz/api/v1/temperature"]
-CMD [ "python","./main.py", $API]c:\02_PXL\IoT_Technologie_PXL_2024\Docker\Dockerfile
+CMD ["sh", "-c", "curl -X PUT -H 'X-Api-Key: $API' -d @data.json  iot.pxl.bjth.xyz/api/v1/temperature"]
+#*CMD [ "python","./main.py", $API]c:\02_PXL\IoT_Technologie_PXL_2024\Docker\Dockerfile
