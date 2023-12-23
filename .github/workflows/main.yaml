@@ -37,7 +37,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           secrets: API=./secretfile.txt
-          file: ./Docker/Dockerfile
+          context: ./Docker
           push: true
           platforms: linux/arm64/v8
           tags: ${{ secrets.DOCKER_USERNAME }}/iot:latest
