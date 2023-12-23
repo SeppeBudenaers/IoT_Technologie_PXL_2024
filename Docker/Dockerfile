@@ -5,7 +5,7 @@ WORKDIR /usr/app/src
 #*Adding API KEY
 RUN --mount=type=secret,id=API,target=/usr/app/src/secret \
 API=$(cat /usr/app/src/secret)
-ENV API_KEY=API
+ENV API_KEY=$API
 COPY ./Docker/main.py ./
 #* running it
 # Create a JSON file with your data
