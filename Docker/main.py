@@ -1,3 +1,1 @@
-def main()
-    args = sys.argv[1:]
-    print(args)
+ print("Hey i am having a mental break down help?")
