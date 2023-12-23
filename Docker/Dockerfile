@@ -4,7 +4,8 @@ FROM python:latest
 WORKDIR /usr/app/src
 #*Adding API KEY
 RUN --mount=type=secret,id=API,target=/usr/app/src/secret 
-ENV API_KEY=$(cat /usr/app/src/secret)
+RUN export API_KEY=$(cat /usr/app/src/secret) && \
+    echo "API_KEY=$API_KEY" >> /etc/environment
 COPY ./Docker/main.py ./
 #* running it
 # Create a JSON file with your data
