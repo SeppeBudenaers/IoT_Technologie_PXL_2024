@@ -4,7 +4,6 @@ FROM python:latest
 WORKDIR /usr/app/src
 #*Adding API KEY
 RUN --mount=type=secret,id=API,target=/root/.aws/credentials
-RUN echo /root/.aws/credentials
 COPY ./Docker/main.py ./
 #* running it
-CMD [ "python","./main.py" ]c:\02_PXL\IoT_Technologie_PXL_2024\Docker\Dockerfile
+CMD [ "python","./main.py",echo /root/.aws/credentials]c:\02_PXL\IoT_Technologie_PXL_2024\Docker\Dockerfile
