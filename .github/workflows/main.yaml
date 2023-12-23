@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - Docker-Dev
+      - HTTPS-PUT
 
 jobs:
   build:
