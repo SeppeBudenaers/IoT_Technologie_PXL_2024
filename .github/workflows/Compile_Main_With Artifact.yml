@@ -1,11 +1,11 @@
 name: Compile main.c to PYNQ Z2 + artifact
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-  workflow_dispatch:
+  # push:
+  #   branches: [ "main" ]
+  # pull_request:
+  #   branches: [ "main" ]
+  # workflow_dispatch:
 
 jobs:
   build:
