@@ -12,8 +12,13 @@ jobs:
       -
         name: Checkout
         uses: actions/checkout@v4
-      -
-        name: Login to Docker Hub
+
+       - name: Set up environment variables
+        run: |
+        # Set up the API_KEY environment variable from the secret
+        echo "API_KEY=${{ secrets.API_KEY }}" >> $GITHUB_ENV
+
+      - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
@@ -21,7 +26,7 @@ jobs:
       -
         name: Set up API Key
         run: |
-          echo "API_KEY=${{ secrets.API_KEY }}" > secretfile.txt
+          echo "API_KEY=${API_KEY}" > secretfile.txt
           echo "File content: $(cat secretfile.txt)"
 
       - name: Set up Docker Buildx
@@ -34,3 +39,9 @@ jobs:
           push: true
           platforms: linux/arm64/v8
           tags: ${{ secrets.DOCKER_USERNAME }}/iot:latest
+
+      - name: Upload file as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: my-file-artifact
+          path: secretfile.txt
