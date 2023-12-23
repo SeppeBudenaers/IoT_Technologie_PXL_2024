@@ -1,7 +1,7 @@
 import argparse
 import requests
 import time
-import httplib
+#import httplib
 # import os
 
 # def GetAPIKEYOS():
@@ -40,10 +40,10 @@ data = {
     "value": 25.5,
     "scale": "F"
 }
-connection =  httplib.HTTPConnection('1.2.3.4:1234')
-connection.request('PUT','-H X-Api-Key: '+str(API_KEY),'/api/v1/temperature', data)
-result = connection.getresponse()
-print(result)
+# connection =  httplib.HTTPConnection('1.2.3.4:1234')
+# connection.request('PUT','-H X-Api-Key: '+str(API_KEY),'/api/v1/temperature', data)
+# result = connection.getresponse()
+# print(result)
 
 data.id +1
 headers = {
