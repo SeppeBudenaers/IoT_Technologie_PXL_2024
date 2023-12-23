@@ -8,7 +8,7 @@ COPY ./Docker/main.py ./
 RUN --mount=type=secret,id=API,target=/usr/app/src/secret cat /usr/app/src/secret > ./secretfile.txt
 RUN --mount=type=secret,id=API,target=/usr/app/src/secret API=$(cat /usr/app/src/secret)
 ENV API_KEY=$API
-RUN echo $API_KEY
+#RUN echo $API_KEY
 #adding libraries
 RUN pip install requests
 
