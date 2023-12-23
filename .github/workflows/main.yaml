@@ -32,7 +32,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
-          secret-files: mysecret=./secretfile.txt
+          secret-files: API=./secretfile.txt
           context: ./Docker
           push: true
           platforms: linux/arm64/v8

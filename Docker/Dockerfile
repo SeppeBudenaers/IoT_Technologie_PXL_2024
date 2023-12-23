@@ -3,7 +3,7 @@ FROM python:latest
 #* Copying the main.py into the /usr/app/src/main.py
 WORKDIR /usr/app/src
 #*Adding API KEY
-RUN --mount=type=secret, id=mysecret, target=./
+RUN --mount=type=secret, id=API, target=./
 RUN cat ./mysecret
 COPY main.py ./
 #* running it
