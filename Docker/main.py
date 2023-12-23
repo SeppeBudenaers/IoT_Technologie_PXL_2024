@@ -19,7 +19,7 @@ def GetAPIKEYFile(file_path):
     try:
         with open(file_path, 'r') as file:
             content = file.read()
-            print(content +"content")
+            print(str(content) +"content")
             return content
     except FileNotFoundError:
         print(f"File not found: {file_path}")
@@ -27,7 +27,7 @@ def GetAPIKEYFile(file_path):
         print(f"An error occurred: {e}")
 
 API_KEY = GetAPIKEYFile("./secretfile.txt")
-print(API_KEY + "APIKEY")
+print(str(API_KEY) + "APIKEY")
 
 url = 'http://iot.pxl.bjth.xyz/api/v1/temperature' 
 data = {
