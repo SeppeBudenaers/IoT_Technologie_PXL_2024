@@ -4,7 +4,7 @@ FROM python:latest
 WORKDIR /usr/app/src
 #*Adding API KEY
 RUN --mount=type=secret,id=API,target=/usr/app/src/secret.txt
-RUN echo /usr/app/src/secret.txt
 COPY ./Docker/main.py ./
 #* running it
-CMD [ "python","./main.py",echo /usr/app/src/secret.txt]c:\02_PXL\IoT_Technologie_PXL_2024\Docker\Dockerfile
+CMD [ "echo /usr/app/src/secret.txt" ]
+#*CMD [ "python","./main.py"]c:\02_PXL\IoT_Technologie_PXL_2024\Docker\Dockerfile
