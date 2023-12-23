@@ -41,7 +41,7 @@ data = {
     "scale": "F"
 }
 headers = {
-    'X-Api-Key': API_KEY  # Fix the key here
+    '-h':"X-Api-Key : "+str(API_KEY)  # Fix the key here
 }
 
 response = requests.put(url, json=data, headers=headers)
