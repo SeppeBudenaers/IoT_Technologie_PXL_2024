@@ -10,11 +10,10 @@ def GetAPIKEYOS():
         print(f"Enviormental Key Does not exist")
 
 def GetAPIKEYOS():
-    try:
-        parser = argparse.ArgumentParser(description='IOT program')
-        parser.add_argument('API_KEY', metavar='API_KEY',type=str, help='enter your API key')
-        args = parser.parse_args()
-        return args.API_KEY
+    parser = argparse.ArgumentParser(description='IOT program')
+    parser.add_argument('API_KEY', metavar='API_KEY',type=str, help='enter your API key')
+    args = parser.parse_args()
+    return args.API_KEY
 
 def GetAPIKEYFile(file_path):
     try:
