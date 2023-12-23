@@ -1,17 +1,19 @@
-import argparse 
+import argparse
 import requests
 import time
-import os
-def GetAPIKEYOS():
-    try:
-        #API_KEY = os.environ.get('API_KEY')
-        return API_KEY  
-    except KeyError:
-        print(f"Enviormental Key Does not exist")
+
+# import os
+
+# def GetAPIKEYOS():
+#     try:
+#         # API_KEY = os.environ.get('API_KEY')
+#         return API_KEY
+#     except KeyError:
+#         print("Environmental Key Does not exist")
 
 def GetAPIKEYARG():
     parser = argparse.ArgumentParser(description='IOT program')
-    parser.add_argument('API_KEY', metavar='API_KEY',type=str, help='enter your API key')
+    parser.add_argument('API_KEY', metavar='API_KEY', type=str, help='enter your API key')
     args = parser.parse_args()
     return args.API_KEY
 
@@ -19,28 +21,27 @@ def GetAPIKEYFile(file_path):
     try:
         with open(file_path, 'r') as file:
             content = file.read()
-            print(str(content) +"content")
+            print(str(content) + "content")
             return content
     except FileNotFoundError:
         print(f"File not found: {file_path}")
     except Exception as e:
         print(f"An error occurred: {e}")
 
+# Choose one of the methods to get API_KEY
+# API_KEY = GetAPIKEYOS()
+# API_KEY = GetAPIKEYARG()
 API_KEY = GetAPIKEYFile("secretfile.txt")
-print(str(API_KEY) + "APIKEY")
+print(str(API_KEY) + " APIKEY")
 
-url = 'http://iot.pxl.bjth.xyz/api/v1/temperature' 
+url = 'http://iot.pxl.bjth.xyz/api/v1/temperature'
 data = {
-
- "id": time.time(),
-
- "value": 25.5,
-
- "scale": "F"
-
+    "id": time.time(),
+    "value": 25.5,
+    "scale": "F"
 }
 headers = {
-    '-h X-Api-Key': API_KEY
+    'X-Api-Key': API_KEY  # Fix the key here
 }
 
 response = requests.put(url, json=data, headers=headers)
