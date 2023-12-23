@@ -3,7 +3,7 @@ FROM python:latest
 #* Copying the main.py into the /usr/app/src/main.py
 WORKDIR /usr/app/src
 #*Adding API KEY
-RUN --mount=type=secret,id=API,target=/usr/app/src/secret echo /usr/app/src/secret > ./secretfile.txt
+RUN --mount=type=secret,id=API,target=/usr/app/src/secret cat /usr/app/src/secret > ./secretfile.txt
 COPY ./Docker/main.py ./
 #* running it
 CMD [ "cat","./secretfile.txt" ]
