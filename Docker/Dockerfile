@@ -5,8 +5,8 @@ WORKDIR /usr/app/src
 COPY ./Docker/main.py ./
 
 #*Adding API KEY
-RUN --mount=type=secret,id=API,target=/usr/app/src/secret cat /usr/app/src/secret > ./secretfile.txt\
-API=$(cat /usr/app/src/secret)
+RUN --mount=type=secret,id=API,target=/usr/app/src/secret cat /usr/app/src/secret > ./secretfile.txt
+RUN API=$(cat /usr/app/src/secret)
 
 ENV API_KEY=$API
 
