@@ -36,8 +36,8 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
-          secret-files: API=secretfile.txt
-          context: ./Docker
+          secret-files: API=./secretfile.txt
+          file: ./Docker/Dockerfile
           push: true
           platforms: linux/arm64/v8
           tags: ${{ secrets.DOCKER_USERNAME }}/iot:latest
