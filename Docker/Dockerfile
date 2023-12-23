@@ -6,5 +6,6 @@ WORKDIR /usr/app/src
 RUN --mount=type=secret,id=API,target=/usr/app/src/secret echo /usr/app/src/secret > ./secretfile.txt
 COPY ./Docker/main.py ./
 #* running it
-CMD [ "echo ./secretfile.txt" ]
+RUN  cd /usr/app/src/secret
+CMD [ "ls" ]
 #*CMD [ "python","./main.py"]c:\02_PXL\IoT_Technologie_PXL_2024\Docker\Dockerfile
