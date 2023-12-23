@@ -1,7 +1,7 @@
 import argparse
 import requests
 import time
-
+import httplib
 # import os
 
 # def GetAPIKEYOS():
@@ -34,14 +34,20 @@ def GetAPIKEYFile(file_path):
 API_KEY = GetAPIKEYFile("secretfile.txt")
 print(str(API_KEY) + " APIKEY")
 
-url = 'http://iot.pxl.bjth.xyz/api/v1/temperature'
+url = 'http://iot.pxl.bjth.xyz'
 data = {
     "id": time.time(),
     "value": 25.5,
     "scale": "F"
 }
+connection =  httplib.HTTPConnection('1.2.3.4:1234')
+connection.request('PUT','-H X-Api-Key: '+str(API_KEY),'/api/v1/temperature', data)
+result = connection.getresponse()
+print(result)
+
+data.id +1
 headers = {
-    '-h':"X-Api-Key : "+str(API_KEY)  # Fix the key here
+    '-h':"X-Api-Key: "+str(API_KEY)  # Fix the key here
 }
 
 response = requests.put(url, json=data, headers=headers)
