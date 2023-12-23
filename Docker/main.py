@@ -8,5 +8,7 @@ def read_and_print_file(file_path):
     except Exception as e:
         print(f"An error occurred: {e}")
 
-file_path = './secretfile.txt'
+file_path = 'secretfile.txt'
 read_and_print_file(file_path)  
+
+print("I have a mental break down")
