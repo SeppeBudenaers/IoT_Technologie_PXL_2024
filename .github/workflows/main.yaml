@@ -28,7 +28,7 @@ jobs:
         run: | 
             echo "${API_KEY}" > secretfile.txt
             echo "$pwd/secretfile.txt"
-            echo "File content: $(cat pwd/secretfile.txt)""
+            echo "File content: $(cat pwd/secretfile.txt)"
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
