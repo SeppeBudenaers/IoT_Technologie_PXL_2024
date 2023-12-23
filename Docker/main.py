@@ -25,7 +25,7 @@ def GetAPIKEYFile(file_path):
     except Exception as e:
         print(f"An error occurred: {e}")
 
-API_key = GetAPIKEYFile("./secretfile.txt")
+API_KEY = GetAPIKEYFile("./secretfile.txt")
 print(API_KEY)
 
 url = 'http://iot.pxl.bjth.xyz/api/v1/temperature' 
