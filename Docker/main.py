@@ -1,6 +1,6 @@
 import argparse 
 import os
-API = os.environ.get('API')
+API = os.environ.get('API_KEY')
 print(str(API) + " OS")
 
 parser = argparse.ArgumentParser(description='IOT program')
