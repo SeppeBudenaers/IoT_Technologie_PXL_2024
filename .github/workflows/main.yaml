@@ -21,7 +21,7 @@ jobs:
       -
         name: Set up API Key
         run: |
-          echo "${{ secrets.API_KEY }}" > secretfile.txt
+          echo "API_KEY=${{ secrets.API_KEY }}" > secretfile.txt
           echo "File content: $(cat secretfile.txt)"
 
       - name: Set up Docker Buildx
