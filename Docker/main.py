@@ -4,7 +4,7 @@ import time
 import os
 def GetAPIKEYOS():
     try:
-        API_KEY = os.environ.get('API_KEY')
+        #API_KEY = os.environ.get('API_KEY')
         return API_KEY  
     except KeyError:
         print(f"Enviormental Key Does not exist")
