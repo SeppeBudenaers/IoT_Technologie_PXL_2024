@@ -34,6 +34,6 @@ jobs:
         with:
           context: ./Docker
           push: true
-          secret-files: id=mysecret,src=./secretfile.txt
+          secret-files: ./secretfile.txt
           platforms: linux/arm64/v8
           tags: ${{ secrets.DOCKER_USERNAME }}/iot:latest
