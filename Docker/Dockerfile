@@ -13,7 +13,7 @@ RUN echo $API_KEY
 RUN pip install requests
 
 #* running it
-CMD [ "python","./main.py", "$(cat /usr/app/src/secret)"]c:\02_PXL\IoT_Technologie_PXL_2024\Docker\Dockerfile
+CMD ["sh", "-c", "python","./main.py", "$(cat /usr/app/src/secret)"]c:\02_PXL\IoT_Technologie_PXL_2024\Docker\Dockerfile
 
 #test CMD
 # Create a JSON file with your data
