@@ -7,13 +7,12 @@ COPY ./Docker/main.py ./
 #*Adding API KEY
 RUN --mount=type=secret,id=API,target=/usr/app/src/secret cat /usr/app/src/secret > ./secretfile.txt
 RUN --mount=type=secret,id=API,target=/usr/app/src/secret API=$(cat /usr/app/src/secret)
-ENV API_KEY=$API
-RUN echo $API_KEY
+ENV API_KEY_FILE=/usr/app/src/secret
 #adding libraries
 RUN pip install requests
 
 #* running it
-CMD ["sh", "-c", "python /usr/app/src/main.py $API"]c:\02_PXL\IoT_Technologie_PXL_2024\Docker\Dockerfile
+CMD ["sh", "-c", "python /usr/app/src/main.py $(cat $API_KEY_FILE)"]c:\02_PXL\IoT_Technologie_PXL_2024\Docker\Dockerfile
 
 #test CMD
 # Create a JSON file with your data
