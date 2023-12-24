@@ -3,13 +3,13 @@ import requests
 import time
 import os
 
-def GetAPIKEYOS():
-    try:
-        print(os.environ)
-        API_KEY = os.environ.get('API_KEY')
-        return API_KEY
-    except KeyError:
-        print("Environmental Key Does not exist")
+# def GetAPIKEYOS():
+#     try:
+#         print(os.environ)
+#         API_KEY = os.environ.get('API_KEY')
+#         return API_KEY
+#     except KeyError:
+#         print("Environmental Key Does not exist")
 
 def GetAPIKEYARG():
     parser = argparse.ArgumentParser(description='IOT program')
@@ -28,8 +28,8 @@ def GetAPIKEYFile(file_path):
         print(f"An error occurred: {e}")
 
 # Choose one of the methods to get API_KEY
-API_KEY = GetAPIKEYOS()
-print(API_KEY)
+# API_KEY = GetAPIKEYOS()
+# print(API_KEY)
 API_KEY = GetAPIKEYARG()
 print(API_KEY)
 API_KEY = GetAPIKEYFile("secretfile.txt")
