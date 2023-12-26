@@ -3,6 +3,7 @@ import RPi.GPIO as GPIO            # import RPi.GPIO module
 import argparse
 import requests
 import time
+from time import sleep
 import os
 
 def GetAPIKEYOS():
