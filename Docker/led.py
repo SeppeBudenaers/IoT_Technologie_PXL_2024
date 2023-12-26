@@ -25,12 +25,12 @@ class RGBdata:
         output = bytes([green_value, red_value, blue_value])
         return output
 
-    def outputInt(self):
-        output = 0
-        if self.BRIGHTNESS >= 100:
-            self.BRIGHTNESS = 100
-        output = (int(self.GREEN / self.BRIGHTNESS) << 16) | (int(self.RED/ self.BRIGHTNESS)  << 8) | int(self.BLUE/ self.BRIGHTNESS) 
-        return output
+    # def outputInt(self):
+    #     output = 0
+    #     if self.BRIGHTNESS >= 100:
+    #         self.BRIGHTNESS = 100
+    #     output = (int(self.GREEN / self.BRIGHTNESS) << 16) | (int(self.RED/ self.BRIGHTNESS)  << 8) | int(self.BLUE/ self.BRIGHTNESS) 
+    #     return output
     
 @dataclass
 class Neopixel:
@@ -54,6 +54,7 @@ class Neopixel:
         self.pixels[pixel].RED = red
         self.pixels[pixel].GREEN = green
         self.pixels[pixel].BLUE = blue
+        return 0
 
     def fill(self, red: int = 0, green: int = 0, blue: int = 0, brightness: int =101):
         for pixel in self.pixels:
@@ -62,6 +63,7 @@ class Neopixel:
             pixel.RED = red
             pixel.GREEN = green
             pixel.BLUE = blue
+        return 0
 
     def ws2812_Data(self):
         outputArray = [0] * (len(self.pixels) * 24)
@@ -75,9 +77,9 @@ class Neopixel:
                 bit_index = 7 - (i % 8)
 
                 if ((color[byte_index] >> bit_index) & 0x01) == 1:
-                    outputArray[index] = 0b110  # store 1
+                    outputArray[index] = 0b11111100  # store 1
                 else:
-                    outputArray[index] = 0b100  # store 0
+                    outputArray[index] = 0b10000000 # store 0
                 index += 1
 
         return outputArray

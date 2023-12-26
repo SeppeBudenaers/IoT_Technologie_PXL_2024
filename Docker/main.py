@@ -36,10 +36,10 @@ wiringpi.wiringPiSetup()
 # wiringpi.pinMode(ledPin,1) 
 #SPI / ws2812 init
 SPIchannel = 0
-SPIHz = 300000
+SPIHz = 625000
 wiringpi.wiringPiSPISetup(SPIchannel, SPIHz)
 leds = Neopixel(3)
-leds.fill(0,255,0)
+leds.fill(0,255,0,100)
 leds.set_pixel(0,255,0,0,50)
 # Choose one of the methods to get API_KEY
 API_KEY = GetAPIKEYOS()
