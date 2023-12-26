@@ -38,7 +38,7 @@ wiringpi.wiringPiSetup()
 SPIchannel = 0
 wiringpi.wiringPiSPISetup(SPIchannel, 1)
 leds = Neopixel(2)
-inputcolor = RGBdata(255,255,0)
+inputcolor = RGBdata(255,0,124)
 for i in range(2):
     leds.pixels[i] = inputcolor
 
@@ -58,18 +58,18 @@ headers = {
 
 # main loop
 try:  
-    for i in  range (0,10):
-        data = {
-            "id": time.time(),
-            "value": 25.5,
-            "scale": "F"
-        }
-        response = requests.put(url, json=data, headers=headers)
-        print(response)
-        # wiringpi.digitalWrite(ledPin, 1)         # set GPIO24 to 1/GPIO.HIGH/True  
-        sleep(1)                 # wait half a second  
-        # wiringpi.digitalWrite(ledPin, 0)         # set GPIO24 to 0/GPIO.LOW/False  
-        sleep(1)                 # wait half a second
+    # for i in  range (0,10):
+    #     data = {
+    #         "id": time.time(),
+    #         "value": 25.5,
+    #         "scale": "F"
+    #     }
+    #     response = requests.put(url, json=data, headers=headers)
+    #     print(response)
+    #     # wiringpi.digitalWrite(ledPin, 1)         # set GPIO24 to 1/GPIO.HIGH/True  
+    #     sleep(1)                 # wait half a second  
+    #     # wiringpi.digitalWrite(ledPin, 0)         # set GPIO24 to 0/GPIO.LOW/False  
+    #     sleep(1)                 # wait half a second
     #print(bin(leds.outputData()))      
     buf = bytes(leds.outputData())
     print(buf)
