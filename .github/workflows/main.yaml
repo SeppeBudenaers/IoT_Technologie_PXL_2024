@@ -25,7 +25,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           secrets: API= ${{ secrets.API_KEY }}
-          file: ./Docker/Dockerfile
+          context: ./Docker
           push: true
           platforms: linux/arm64/v8
           tags: ${{ secrets.DOCKER_USERNAME }}/iot:dev

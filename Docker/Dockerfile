@@ -9,7 +9,7 @@ RUN pip install RPi.GPIO
 
 # Copying the main.py into the /usr/app/src/main.py
 WORKDIR /usr/app/src
-COPY *./Docker/.py ./
+COPY *.py ./
 
 #*Adding API KEY
 RUN --mount=type=secret,id=API,target=/usr/app/src/secret cat /usr/app/src/secret > ./secretfile.txt
