@@ -12,7 +12,7 @@ class RGBdata:
         self.GREEN = green
     
     def outputInt(self):
-        output
+        output = 0
         output = (self.GREEN << 16) + (self.RED << 8) + self.BLUE
         return output
     
