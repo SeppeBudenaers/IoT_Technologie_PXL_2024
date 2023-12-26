@@ -54,7 +54,10 @@ class Neopixel:
         outputArray=[0]*24
         index = 0
         for i in range(23, -1, -1):
-            if ((color >> i) & 0x01) == 1:
+            byte_index = i // 8
+            bit_index = 7 - (i % 8)
+
+            if ((color[byte_index] >> bit_index) & 0x01) == 1:
                 outputArray[index] = 0b110  # store 1
             else:
                 outputArray[index] = 0b100  # store 0
