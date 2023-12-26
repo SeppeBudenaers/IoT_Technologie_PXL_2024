@@ -5,7 +5,6 @@ on:
     branches:
       - Docker-Dev
       - HTTPS-PUT
-
 jobs:
   build:
     runs-on: ubuntu-latest

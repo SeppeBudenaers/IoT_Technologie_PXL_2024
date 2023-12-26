@@ -1,16 +1,22 @@
-#! Use the latest python docker base
+# Use the latest python docker base
 FROM python:latest
-#* Copying the main.py into the /usr/app/src/main.py
+
+#adding libraries
+RUN apt-get update && apt-get install -y 
+    python3-rpi.gpio
+RUN pip install requests
+RUN pip install RPi.GPIO
+
+# Copying the main.py into the /usr/app/src/main.py
 WORKDIR /usr/app/src
-COPY ./Docker/main.py ./
+COPY *.py ./
 
 #*Adding API KEY
 RUN --mount=type=secret,id=API,target=/usr/app/src/secret cat /usr/app/src/secret > ./secretfile.txt
 RUN --mount=type=secret,id=API,target=/usr/app/src/secret API=$(cat /usr/app/src/secret)
 ENV API_KEY=$API
 RUN echo $API_KEY
-#adding libraries
-RUN pip install requests
+
 
 #* running it
 CMD [ "python","./main.py", "$(cat /usr/app/src/secret)"]c:\02_PXL\IoT_Technologie_PXL_2024\Docker\Dockerfile
