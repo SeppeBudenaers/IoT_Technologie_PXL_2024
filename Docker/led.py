@@ -12,9 +12,9 @@ class RGBdata:
         self.GREEN = green
     
     def outputInt(self):
-        outputstring: str
-        outputstring = str(self.GREEN) + str(self.RED) + str(self.BLUE)
-        return outputstring
+        output
+        output = (self.GREEN << 16) + (self.RED << 8) + self.BLUE
+        return output
     
 @dataclass
 class Neopixel:
