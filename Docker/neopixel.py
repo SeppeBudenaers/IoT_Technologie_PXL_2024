@@ -1,10 +1,9 @@
 import array
 import time
 import RPi.GPIO as GPIO
-import rp2
 
 # PIO state machine for RGB. Pulls 24 bits (rgb -> 3 * 8bit) automatically
-@rp2.asm_pio(sideset_init=rp2.PIO.OUT_LOW, out_shiftdir=rp2.PIO.SHIFT_LEFT, autopull=True, pull_thresh=24)
+#@rp2.asm_pio(sideset_init=rp2.PIO.OUT_LOW, out_shiftdir=rp2.PIO.SHIFT_LEFT, autopull=True, pull_thresh=24)
 def ws2812():
     T1 = 2
     T2 = 5
@@ -19,7 +18,7 @@ def ws2812():
     wrap()
 
 # PIO state machine for RGBW. Pulls 32 bits (rgbw -> 4 * 8bit) automatically
-@rp2.asm_pio(sideset_init=rp2.PIO.OUT_LOW, out_shiftdir=rp2.PIO.SHIFT_LEFT, autopull=True, pull_thresh=32)
+#@rp2.asm_pio(sideset_init=rp2.PIO.OUT_LOW, out_shiftdir=rp2.PIO.SHIFT_LEFT, autopull=True, pull_thresh=32)
 def sk6812():
     T1 = 2
     T2 = 5
@@ -58,12 +57,12 @@ class Neopixel:
 
         if 'W' in self.mode:
             # RGBW uses different PIO state machine configuration
-            self.sm = rp2.StateMachine(state_machine, sk6812, freq=8000000, sideset_base=pin)
+            self.sm = StateMachine(state_machine, sk6812, freq=8000000, sideset_base=pin)
             # dictionary of values required to shift bit into position (check class desc.)
             self.shift = {'R': (mode.index('R') ^ 3) * 8, 'G': (mode.index('G') ^ 3) * 8,
                           'B': (mode.index('B') ^ 3) * 8, 'W': (mode.index('W') ^ 3) * 8}
         else:
-            self.sm = rp2.StateMachine(state_machine, ws2812, freq=8000000, sideset_base=pin)
+            self.sm = StateMachine(state_machine, ws2812, freq=8000000, sideset_base=pin)
             self.shift = {'R': ((mode.index('R') ^ 3) - 1) * 8, 'G': ((mode.index('G') ^ 3) - 1) * 8,
                           'B': ((mode.index('B') ^ 3) - 1) * 8, 'W': 0}
         self.sm.active(1)
