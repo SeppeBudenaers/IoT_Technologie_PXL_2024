@@ -58,10 +58,10 @@ class Neopixel:
     def fill(self, red: int = 0, green: int = 0, blue: int = 0, brightness: int =101):
         for pixel in self.pixels:
             if brightness <= 100: 
-                self.pixels[pixel].BRIGHTNESS = brightness
-            self.pixels[pixel].RED = red
-            self.pixels[pixel].GREEN = green
-            self.pixels[pixel].BLUE = blue
+                pixel.BRIGHTNESS = brightness
+            pixel.RED = red
+            pixel.GREEN = green
+            pixel.BLUE = blue
 
     def ws2812_Data(self):
         outputArray = [0] * (len(self.pixels) * 24)
