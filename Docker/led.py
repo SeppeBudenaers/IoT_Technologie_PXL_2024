@@ -40,16 +40,30 @@ class Neopixel:
         
     pixels = []
     
-    def outputData(self):
-        outputArray = [int] * len(self.pixels) *3
-        for i in range(len(self.pixels)):
-            step = i *3
-            outputArray[step] = self.pixels[i].GREEN
-            outputArray[step+1] = self.pixels[i].RED
-            outputArray[step+2] = self.pixels[i].BLUE
-        return outputArray
+    # def outputData(self):
+    #     outputArray = [int] * len(self.pixels) *3
+    #     for i in range(len(self.pixels)):
+    #         step = i *3
+    #         outputArray[step] = self.pixels[i].GREEN
+    #         outputArray[step+1] = self.pixels[i].RED
+    #         outputArray[step+2] = self.pixels[i].BLUE
+    #     return outputArray
+    def set_pixel(self,pixel: int = 0 ,red: int = 0, green: int = 0, blue: int = 0, brightness: int =101):
+        if brightness <= 100: 
+            self.pixels[pixel].BRIGHTNESS = brightness
+        self.pixels[pixel].RED = red
+        self.pixels[pixel].GREEN = green
+        self.pixels[pixel].BLUE = blue
 
-    def ws2812_SPI(self):
+    def fill(self, red: int = 0, green: int = 0, blue: int = 0, brightness: int =101):
+        for pixel in self.pixels:
+            if brightness <= 100: 
+                self.pixels[pixel].BRIGHTNESS = brightness
+            self.pixels[pixel].RED = red
+            self.pixels[pixel].GREEN = green
+            self.pixels[pixel].BLUE = blue
+
+    def ws2812_Data(self):
         outputArray = [0] * (len(self.pixels) * 24)
         index = 0
 

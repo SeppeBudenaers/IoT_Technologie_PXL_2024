@@ -38,11 +38,9 @@ wiringpi.wiringPiSetup()
 SPIchannel = 0
 SPIHz = 300000
 wiringpi.wiringPiSPISetup(SPIchannel, SPIHz)
-leds = Neopixel(2)
-inputcolor = RGBdata(0,255,0)
-for i in range(2):
-    leds.pixels[i] = inputcolor
-
+leds = Neopixel(3)
+leds.fill(0,255,0)
+leds.set_pixel(0,255,0,0,50)
 # Choose one of the methods to get API_KEY
 API_KEY = GetAPIKEYOS()
 print(API_KEY)
@@ -71,8 +69,9 @@ try:
     #     sleep(1)                 # wait half a second  
     #     # wiringpi.digitalWrite(ledPin, 0)         # set GPIO24 to 0/GPIO.LOW/False  
     #     sleep(1)                 # wait half a second
-    #print(bin(leds.outputData()))      
-    buf = bytes(leds.ws2812_SPI())
+    #print(bin(leds.outputData()))
+    print(leds.ws2812_Data())      
+    buf = bytes(leds.ws2812_Data())
     print(buf)
     wiringpi.wiringPiSPIDataRW(SPIchannel, buf)
 except KeyboardInterrupt:          # trap a CTRL+C keyboard interrupt  
