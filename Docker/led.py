@@ -25,7 +25,10 @@ class Neopixel:
     pixels = []
     
     def outputData(self):
-        outputArray = [int] * len(self.pixels)
+        outputArray = [int] * len(self.pixels) *3
         for i in range(len(self.pixels)):
-            outputArray[i] = self.pixels[i].outputInt()
+            step = i *3
+            outputArray[step] = self.pixels[i].GREEN
+            outputArray[step+1] = self.pixels[i].RED
+            outputArray[step+2] = self.pixels[i].BLUE
         return outputArray
