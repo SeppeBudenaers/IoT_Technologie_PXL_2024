@@ -36,9 +36,10 @@ wiringpi.wiringPiSetup()
 # wiringpi.pinMode(ledPin,1) 
 #SPI / ws2812 init
 SPIchannel = 0
-wiringpi.wiringPiSPISetup(SPIchannel, 1)
+SPIHz = 300000
+wiringpi.wiringPiSPISetup(SPIchannel, SPIHz)
 leds = Neopixel(2)
-inputcolor = RGBdata(255,1,2)
+inputcolor = RGBdata(0,255,0)
 for i in range(2):
     leds.pixels[i] = inputcolor
 
