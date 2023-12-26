@@ -71,7 +71,7 @@ try:
     #     # wiringpi.digitalWrite(ledPin, 0)         # set GPIO24 to 0/GPIO.LOW/False  
     #     sleep(1)                 # wait half a second
     #print(bin(leds.outputData()))      
-    buf = bytes(leds.ws2812_SPI())
+    buf = bytes(leds.ws2812_SPI(1))
     print(buf)
     wiringpi.wiringPiSPIDataRW(SPIchannel, buf)
 except KeyboardInterrupt:          # trap a CTRL+C keyboard interrupt  

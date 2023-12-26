@@ -36,8 +36,8 @@ class Neopixel:
             outputArray[step+2] = self.pixels[i].BLUE
         return outputArray
 
-    def ws2812_SPI(self):
-        color = self.outputInt()
+    def ws2812_SPI(self, led: int = 0):
+        color = self.pixels[led].outputInt()
         outputArray=[0]*24
         index = 0
         for i in range(23, -1, -1):
