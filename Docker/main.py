@@ -34,10 +34,6 @@ def GetAPIKEYFile(file_path):
 ledPin = 5
 wiringpi.wiringPiSetup()
 wiringpi.pinMode(ledPin,1)   
-# ws2812 init
-numpix = 5
-pixels = Neopixel(numpix, 0, 15, "GRB")
-pixels.brightness(255)
 # Choose one of the methods to get API_KEY
 API_KEY = GetAPIKEYOS()
 print(API_KEY)
