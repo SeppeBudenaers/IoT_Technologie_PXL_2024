@@ -2,10 +2,9 @@
 FROM python:latest
 
 #adding libraries
-RUN apt-get update && apt-get install -y \
-    python3-rpi.gpio
 RUN pip install requests
 RUN pip install RPi.GPIO
+RUN pip install rp2
 
 # Copying the main.py into the /usr/app/src/main.py
 WORKDIR /usr/app/src
