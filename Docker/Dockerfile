@@ -3,7 +3,8 @@ FROM python:latest
 
 #adding libraries
 RUN pip install requests
-RUN pip install RPi.GPIO
+RUN pip install wiringpi
+#RUN pip install RPi.GPIO
 RUN pip install rp2
 
 # Copying the main.py into the /usr/app/src/main.py
