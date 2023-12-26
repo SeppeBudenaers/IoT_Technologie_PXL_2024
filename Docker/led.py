@@ -16,7 +16,7 @@ class RGBdata:
         output = 0
         if self.BRIGHTNESS >= 100:
             self.BRIGHTNESS = 100
-        output = ((self.GREEN / self.BRIGHTNESS) << 16) | ((self.RED/ self.BRIGHTNESS)  << 8) | (self.BLUE/ self.BRIGHTNESS) 
+        output = (int(self.GREEN / self.BRIGHTNESS) << 16) | (int(self.RED/ self.BRIGHTNESS)  << 8) | int(self.BLUE/ self.BRIGHTNESS) 
         return output
     
 @dataclass
