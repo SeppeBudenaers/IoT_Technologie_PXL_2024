@@ -1,5 +1,6 @@
-import array, time
-from machine import Pin
+import array
+import time
+import RPi.GPIO as GPIO
 import rp2
 
 # PIO state machine for RGB. Pulls 24 bits (rgb -> 3 * 8bit) automatically
@@ -177,7 +178,7 @@ class Neopixel:
 
     # Update pixels
     def show(self):
-        # If mode is RGB, we cut 8 bits of, otherwise we keep all 32
+        # If mode is RGB, we cut 8 bits off; otherwise, we keep all 32
         cut = 8
         if 'W' in self.mode:
             cut = 0
