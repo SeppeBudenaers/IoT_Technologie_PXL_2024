@@ -70,7 +70,7 @@ try:
         sleep(1)                 # wait half a second  
         # wiringpi.digitalWrite(ledPin, 0)         # set GPIO24 to 0/GPIO.LOW/False  
         sleep(1)                 # wait half a second
-    print(bin(leds.outputData()))      
+    #print(bin(leds.outputData()))      
     buf = bytes(leds.outputData())
     print(buf)
     wiringpi.wiringPiSPIDataRW(SPIchannel, buf)
