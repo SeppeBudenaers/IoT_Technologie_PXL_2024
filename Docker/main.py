@@ -32,7 +32,7 @@ def GetAPIKEYFile(file_path):
 
 # GPIO Init 
 # ledPin = 5
- wiringpi.wiringPiSetup()
+wiringpi.wiringPiSetup()
 # wiringpi.pinMode(ledPin,1) 
 #SPI / ws2812 init
 SPIchannel = 0
