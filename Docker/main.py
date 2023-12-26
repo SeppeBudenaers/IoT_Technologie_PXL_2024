@@ -31,16 +31,16 @@ def GetAPIKEYFile(file_path):
         print(f"An error occurred: {e}")
 
 # GPIO Init 
-    GPIO.setmode(GPIO.BCM)             # choose BCM or BOARD  
-    GPIO.setup(24, GPIO.OUT)           # set GPIO24 as an output   
+GPIO.setmode(GPIO.BCM)             # choose BCM or BOARD  
+GPIO.setup(24, GPIO.OUT)           # set GPIO24 as an output   
 
 # Choose one of the methods to get API_KEY
-    API_KEY = GetAPIKEYOS()
-    print(API_KEY)
-    API_KEY = GetAPIKEYARG()
-    print(API_KEY)
-    API_KEY = GetAPIKEYFile("secretfile.txt")
-    print(API_KEY)
+API_KEY = GetAPIKEYOS()
+print(API_KEY)
+API_KEY = GetAPIKEYARG()
+print(API_KEY)
+API_KEY = GetAPIKEYFile("secretfile.txt")
+print(API_KEY)
 
 url = 'http://iot.pxl.bjth.xyz'
 

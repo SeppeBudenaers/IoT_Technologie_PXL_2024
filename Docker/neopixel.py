@@ -50,30 +50,25 @@ class Neopixel:
     def __init__(self, num_leds, state_machine, pin, mode="RGB", delay=0.0001):
         self.pixels = array.array("I", [0 for _ in range(num_leds)])
         self.mode = set(mode)   # set for better performance
+
+        # Use GPIO setup for Raspberry Pi
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(pin, GPIO.OUT)
+
         if 'W' in self.mode:
             # RGBW uses different PIO state machine configuration
-            self.sm = rp2.StateMachine(state_machine, sk6812, freq=8000000, sideset_base=Pin(pin))
+            self.sm = rp2.StateMachine(state_machine, sk6812, freq=8000000, sideset_base=pin)
             # dictionary of values required to shift bit into position (check class desc.)
             self.shift = {'R': (mode.index('R') ^ 3) * 8, 'G': (mode.index('G') ^ 3) * 8,
                           'B': (mode.index('B') ^ 3) * 8, 'W': (mode.index('W') ^ 3) * 8}
         else:
-            self.sm = rp2.StateMachine(state_machine, ws2812, freq=8000000, sideset_base=Pin(pin))
+            self.sm = rp2.StateMachine(state_machine, ws2812, freq=8000000, sideset_base=pin)
             self.shift = {'R': ((mode.index('R') ^ 3) - 1) * 8, 'G': ((mode.index('G') ^ 3) - 1) * 8,
                           'B': ((mode.index('B') ^ 3) - 1) * 8, 'W': 0}
         self.sm.active(1)
         self.num_leds = num_leds
         self.delay = delay
         self.brightnessvalue = 255
-
-    # Set the overal value to adjust brightness when updating leds
-    def brightness(self, brightness=None):
-        if brightness == None:
-            return self.brightnessvalue
-        else:
-            if brightness < 1:
-                brightness = 1
-        if brightness > 255:
-            brightness = 255
         self.brightnessvalue = brightness
 
     # Create a gradient with two RGB colors between "pixel1" and "pixel2" (inclusive)
