@@ -1,15 +1,28 @@
 # Use the latest python docker base
 FROM python:latest
 
-RUN apt-get update && apt-get install -y \
+#adding libraries
+RUN apt-get update && apt-get install -y 
     python3-rpi.gpio
+RUN pip install requests
 RUN pip install RPi.GPIO
+
 # Copying the main.py into the /usr/app/src/main.py
 WORKDIR /usr/app/src
 COPY *.py ./
 
-# Installing required packages
-#RUN upip install micropython-machine
+#*Adding API KEY
+RUN --mount=type=secret,id=API,target=/usr/app/src/secret cat /usr/app/src/secret > ./secretfile.txt
+RUN --mount=type=secret,id=API,target=/usr/app/src/secret API=$(cat /usr/app/src/secret)
+ENV API_KEY=$API
+RUN echo $API_KEY
 
-# Running the script
-CMD [ "python","./main.py" ]
+
+#* running it
+CMD [ "python","./main.py", "$(cat /usr/app/src/secret)"]c:\02_PXL\IoT_Technologie_PXL_2024\Docker\Dockerfile
+
+#test CMD
+# Create a JSON file with your data
+# RUN echo '{"id": "$(date +%s)", "value": 123.45, "scale": "F"}' > data.json
+# CMD ["sh", "-c", "curl -X PUT -H 'X-Api-Key: $API_KEY' -d @data.json  iot.pxl.bjth.xyz/api/v1/temperature"]
+# CMD [ "ls"]
