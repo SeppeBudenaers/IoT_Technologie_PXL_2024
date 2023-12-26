@@ -19,7 +19,7 @@ RUN echo $API_KEY
 
 
 #* running it
-CMD [ "python","./main.py", "$(cat /usr/app/src/secret)"]c:\02_PXL\IoT_Technologie_PXL_2024\Docker\Dockerfile
+CMD ["python", "./main.py", "ARGUMENT"]
 
 #test CMD
 # Create a JSON file with your data
