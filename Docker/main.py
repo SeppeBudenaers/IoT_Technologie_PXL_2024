@@ -69,9 +69,10 @@ try:
         # wiringpi.digitalWrite(ledPin, 1)         # set GPIO24 to 1/GPIO.HIGH/True  
         sleep(1)                 # wait half a second  
         # wiringpi.digitalWrite(ledPin, 0)         # set GPIO24 to 0/GPIO.LOW/False  
-        sleep(1)                 # wait half a second  
+        sleep(1)                 # wait half a second
+    print(bin(leds.outputData()))      
     buf = bytes(leds.outputData())
-    print(bin(buf))
+    print(buf)
     wiringpi.wiringPiSPIDataRW(SPIchannel, buf)
 except KeyboardInterrupt:          # trap a CTRL+C keyboard interrupt  
     GPIO.cleanup()                 # resets all GPIO ports used by this program
