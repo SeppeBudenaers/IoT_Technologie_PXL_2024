@@ -1,6 +1,5 @@
 
 import wiringpi
-from neopixel import Neopixel
 import argparse
 import requests
 import time
