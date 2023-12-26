@@ -25,6 +25,10 @@ class RGBdata:
         output = bytes([green_value, red_value, blue_value])
         return output
 
+    def colors(self)
+        output = 0
+        output = str(self.RED) + str(self.GREEN) + str(self.BLUE) + str(self.BRIGHTNESS)
+        return output
     # def outputInt(self):
     #     output = 0
     #     if self.BRIGHTNESS >= 100:
@@ -48,6 +52,13 @@ class Neopixel:
     #         outputArray[step+1] = self.pixels[i].RED
     #         outputArray[step+2] = self.pixels[i].BLUE
     #     return outputArray
+    def colors(self)
+         output = 0
+         index = 0
+         for pixel in self.pixels:
+            output = "LED" + str(index) + pixel.colors
+        return output
+
     def set_pixel(self,pixel: int = 0 ,red: int = 0, green: int = 0, blue: int = 0, brightness: int =101):
         if brightness <= 100: 
             self.pixels[pixel].BRIGHTNESS = brightness

@@ -70,7 +70,7 @@ try:
     #     # wiringpi.digitalWrite(ledPin, 0)         # set GPIO24 to 0/GPIO.LOW/False  
     #     sleep(1)                 # wait half a second
     #print(bin(leds.outputData()))
-    print(leds.ws2812_Data())      
+    print(leds.colors())      
     buf = bytes(leds.ws2812_Data())
     print(buf)
     wiringpi.wiringPiSPIDataRW(SPIchannel, buf)
