@@ -30,37 +30,38 @@ def GetAPIKEYFile(file_path):
     except Exception as e:
         print(f"An error occurred: {e}")
 
+# GPIO Init 
+    GPIO.setmode(GPIO.BCM)             # choose BCM or BOARD  
+    GPIO.setup(24, GPIO.OUT)           # set GPIO24 as an output   
+
 # Choose one of the methods to get API_KEY
-API_KEY = GetAPIKEYOS()
-print(API_KEY)
-API_KEY = GetAPIKEYARG()
-print(API_KEY)
-API_KEY = GetAPIKEYFile("secretfile.txt")
-print(API_KEY)
+    API_KEY = GetAPIKEYOS()
+    print(API_KEY)
+    API_KEY = GetAPIKEYARG()
+    print(API_KEY)
+    API_KEY = GetAPIKEYFile("secretfile.txt")
+    print(API_KEY)
+
 url = 'http://iot.pxl.bjth.xyz'
+
 headers = {
     '-h':"X-Api-Key: "+str(API_KEY)
 }
-data = {
-    "id": time.time(),
-    "value": 25.5,
-    "scale": "F"
-}
 
-
-
-response = requests.put(url, json=data, headers=headers)
-
-print(response)
-GPIO.setmode(GPIO.BCM)             # choose BCM or BOARD  
-GPIO.setup(24, GPIO.OUT)           # set GPIO24 as an output   
-  
+# main loop
 try:  
-    while True:  
+    for i in  range (0,10):
+        data = {
+            "id": time.time(),
+            "value": 25.5,
+            "scale": "F"
+        }
+        response = requests.put(url, json=data, headers=headers)
+        print(response)
         GPIO.output(24, 1)         # set GPIO24 to 1/GPIO.HIGH/True  
-        sleep(0.5)                 # wait half a second  
+        sleep(1)                 # wait half a second  
         GPIO.output(24, 0)         # set GPIO24 to 0/GPIO.LOW/False  
-        sleep(0.5)                 # wait half a second  
+        sleep(1)                 # wait half a second  
   
 except KeyboardInterrupt:          # trap a CTRL+C keyboard interrupt  
     GPIO.cleanup()                 # resets all GPIO ports used by this program
