@@ -6,11 +6,24 @@ class RGBdata:
     GREEN: int
     BLUE: int
     BRIGHTNESS: int
-    def __init__(self, red:int = 0, green:int = 0 ,blue:int = 0,brightness:int = 100):
+    def __init__(self, red: int = 0, green: int = 0, blue: int = 0, brightness: int = 100):
         self.RED = red
         self.BLUE = blue
         self.GREEN = green
-        self.BRIGHTNESS = 100
+        self.BRIGHTNESS = brightness
+
+    def output_bytes(self) -> bytes:
+        if self.BRIGHTNESS >= 100:
+            self.BRIGHTNESS = 100
+
+        # Calculate RGB values with brightness adjustment
+        red_value = int(self.RED * self.BRIGHTNESS/100 )
+        green_value = int(self.GREEN * self.BRIGHTNESS/100)
+        blue_value = int(self.BLUE * self.BRIGHTNESS/100)
+
+        # Pack RGB values into a 3-byte representation (bytes)
+        output = bytes([green_value, red_value, blue_value])
+        return output
 
     def outputInt(self):
         output = 0
@@ -37,7 +50,7 @@ class Neopixel:
         return outputArray
 
     def ws2812_SPI(self, led: int = 0):
-        color = self.pixels[led].outputInt()
+        color = self.pixels[led].output_bytes()
         outputArray=[0]*24
         index = 0
         for i in range(23, -1, -1):

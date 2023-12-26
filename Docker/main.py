@@ -38,7 +38,7 @@ wiringpi.wiringPiSetup()
 SPIchannel = 0
 wiringpi.wiringPiSPISetup(SPIchannel, 1)
 leds = Neopixel(2)
-inputcolor = RGBdata(255,0,124)
+inputcolor = RGBdata(255,1,2)
 for i in range(2):
     leds.pixels[i] = inputcolor
 
