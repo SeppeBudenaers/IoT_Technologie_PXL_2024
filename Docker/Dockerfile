@@ -19,10 +19,10 @@ RUN echo $API_KEY
 
 
 #* running it
-CMD ["python", "./main.py", "ARGUMENT"]
+#CMD ["python", "./main.py", "ARGUMENT"]
 
 #test CMD
 # Create a JSON file with your data
 # RUN echo '{"id": "$(date +%s)", "value": 123.45, "scale": "F"}' > data.json
 # CMD ["sh", "-c", "curl -X PUT -H 'X-Api-Key: $API_KEY' -d @data.json  iot.pxl.bjth.xyz/api/v1/temperature"]
-# CMD [ "ls"]
+CMD [ "ls"]
