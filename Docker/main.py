@@ -36,7 +36,8 @@ GPIO.setmode(GPIO.BCM)             # choose BCM or BOARD
 GPIO.setup(24, GPIO.OUT)           # set GPIO24 as an output   
 # ws2812 init
 numpix = 5
-Neopixel(numpix, 0, 15, "GRB")
+pixels = Neopixel(numpix, 0, 15, "GRB")
+pixels.brightness(255)
 # Choose one of the methods to get API_KEY
 API_KEY = GetAPIKEYOS()
 print(API_KEY)
