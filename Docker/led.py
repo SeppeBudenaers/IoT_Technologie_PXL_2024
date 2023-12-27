@@ -68,9 +68,9 @@ class Neopixel:
         print(str(pixel))
         if brightness <= 100: 
             self.pixels[pixel].BRIGHTNESS = brightness
-        self.pixels[pixel].RED = red
-        self.pixels[pixel].GREEN = green
-        self.pixels[pixel].BLUE = blue
+        # self.pixels[pixel].RED = red
+        # self.pixels[pixel].GREEN = green
+        # self.pixels[pixel].BLUE = blue
         print(self.pixels[0].colors())
         print(self.pixels[1].colors())
         print(self.pixels[2].colors())
