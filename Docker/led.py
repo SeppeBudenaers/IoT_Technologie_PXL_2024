@@ -62,11 +62,13 @@ class Neopixel:
 
 
     def set_pixel(self,pixel: int = 0 ,red: int = 0, green: int = 0, blue: int = 0, brightness: int =101):
+        print(self.pixels[pixel].colors())
         if brightness <= 100: 
             self.pixels[pixel].BRIGHTNESS = brightness
         self.pixels[pixel].RED = red
         self.pixels[pixel].GREEN = green
         self.pixels[pixel].BLUE = blue
+        print(self.pixels[pixel].colors())
         return 0
 
     def fill(self, red: int = 0, green: int = 0, blue: int = 0, brightness: int =101):
