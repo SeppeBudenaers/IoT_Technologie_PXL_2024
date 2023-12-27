@@ -26,23 +26,8 @@ class RGBdata:
         return output
 
     def colors(self):
-        output = 0
-        output = str(self.RED) + str(self.GREEN) + str(self.BLUE) + str(self.BRIGHTNESS)
+        output: str = str(self.RED) + str(self.GREEN) + str(self.BLUE) + str(self.BRIGHTNESS)
         return output
-
-    def set_pixel(self,red: int = 0, green: int = 0, blue: int = 0, brightness: int =101):
-        self.RED = red
-        self.BLUE = blue
-        self.GREEN = green
-        if brightness <= 100:
-            self.BRIGHTNESS = brightness
-
-    # def outputInt(self):
-    #     output = 0
-    #     if self.BRIGHTNESS >= 100:
-    #         self.BRIGHTNESS = 100
-    #     output = (int(self.GREEN / self.BRIGHTNESS) << 16) | (int(self.RED/ self.BRIGHTNESS)  << 8) | int(self.BLUE/ self.BRIGHTNESS) 
-    #     return output
     
 @dataclass
 class Neopixel:
@@ -52,14 +37,6 @@ class Neopixel:
         
     pixels = []
     
-    # def outputData(self):
-    #     outputArray = [int] * len(self.pixels) *3
-    #     for i in range(len(self.pixels)):
-    #         step = i *3
-    #         outputArray[step] = self.pixels[i].GREEN
-    #         outputArray[step+1] = self.pixels[i].RED
-    #         outputArray[step+2] = self.pixels[i].BLUE
-    #     return outputArray
     def colors(self):
         output_list = []
         index = 0
@@ -69,28 +46,12 @@ class Neopixel:
         return ' '.join(output_list)
 
 
-    def set_pixel(self,pixel: int = 0 ,red: int = 0, green: int = 0, blue: int = 0, brightness: int =101):
-        print(self.pixels[0].colors())
-        print(self.pixels[1].colors())
-        print(self.pixels[2].colors())
-        print(str(pixel))
-        if brightness <= 100: 
-            self.pixels[pixel].BRIGHTNESS = brightness
-        # self.pixels[pixel].RED = red
-        # self.pixels[pixel].GREEN = green
-        # self.pixels[pixel].BLUE = blue
-        print(self.pixels[0].colors())
-        print(self.pixels[1].colors())
-        print(self.pixels[2].colors())
+    def set_pixel(self,pixel: int , input: RGBdata):
+        self.pixels[pixel] = input
         return 0
 
-    def fill(self, red: int = 0, green: int = 0, blue: int = 0, brightness: int =101):
-        for pixel in self.pixels:
-            if brightness <= 100: 
-                pixel.BRIGHTNESS = brightness
-            pixel.RED = red
-            pixel.GREEN = green
-            pixel.BLUE = blue
+    def fill(self, input: RGBdata):
+        self.pixels = [input] * len(self.pixels)
         return 0
 
     def ws2812_Data(self):
