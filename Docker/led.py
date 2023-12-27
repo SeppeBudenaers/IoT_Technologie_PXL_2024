@@ -53,10 +53,11 @@ class Neopixel:
     #         outputArray[step+2] = self.pixels[i].BLUE
     #     return outputArray
     def colors(self):
-         output = 0
-         index = 0
-         for pixel in self.pixels:
-            output = "LED" + str(index) + pixel.colors
+        output = 0
+        index = 0
+        for pixel in self.pixels:
+            output = "LED" + str(index) + pixel.colors()
+            index += 1
         return output
 
     def set_pixel(self,pixel: int = 0 ,red: int = 0, green: int = 0, blue: int = 0, brightness: int =101):
