@@ -25,7 +25,7 @@ class RGBdata:
         output = bytes([green_value, red_value, blue_value])
         return output
 
-    def colors(self)
+    def colors(self):
         output = 0
         output = str(self.RED) + str(self.GREEN) + str(self.BLUE) + str(self.BRIGHTNESS)
         return output
@@ -52,7 +52,7 @@ class Neopixel:
     #         outputArray[step+1] = self.pixels[i].RED
     #         outputArray[step+2] = self.pixels[i].BLUE
     #     return outputArray
-    def colors(self)
+    def colors(self):
          output = 0
          index = 0
          for pixel in self.pixels:
