@@ -38,7 +38,7 @@ wiringpi.wiringPiSetup()
 SPIchannel = 0
 SPIHz = 625000
 wiringpi.wiringPiSPISetup(SPIchannel, SPIHz)
-leds = Neopixel(3)
+leds = Neopixel(10000)
 leds.fill(255,255,255,100)
 print(leds.colors()) 
 leds.set_pixel(2,255,0,0,50)
