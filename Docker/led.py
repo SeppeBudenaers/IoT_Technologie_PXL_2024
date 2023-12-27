@@ -28,20 +28,6 @@ class RGBdata:
     def colors(self):
         output: str = str(self.RED) + str(self.GREEN) + str(self.BLUE) + str(self.BRIGHTNESS)
         return output
-
-    def set_pixel(self,red: int = 0, green: int = 0, blue: int = 0, brightness: int =101):
-        self.RED = red
-        self.BLUE = blue
-        self.GREEN = green
-        if brightness <= 100:
-            self.BRIGHTNESS = brightness
-
-    # def outputInt(self):
-    #     output = 0
-    #     if self.BRIGHTNESS >= 100:
-    #         self.BRIGHTNESS = 100
-    #     output = (int(self.GREEN / self.BRIGHTNESS) << 16) | (int(self.RED/ self.BRIGHTNESS)  << 8) | int(self.BLUE/ self.BRIGHTNESS) 
-    #     return output
     
 @dataclass
 class Neopixel:
