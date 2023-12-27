@@ -56,7 +56,7 @@ class Neopixel:
         output_list = []
         index = 0
         for pixel in self.pixels:
-            output_list.append("LED" + str(index) + pixel.colors())
+            output_list.append("LED" + str(index) + self.pixels[index].colors())
             index += 1
         return ' '.join(output_list)
 
