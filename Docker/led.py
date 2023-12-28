@@ -6,27 +6,30 @@ class RGBdata:
     GREEN: int
     BLUE: int
     BRIGHTNESS: int
-    def __init__(self, red: int = 0, green: int = 0, blue: int = 0, brightness: int = 100):
-        self.RED = red
-        self.BLUE = blue
-        self.GREEN = green
-        self.BRIGHTNESS = brightness
+    
+
+    def __init__(self, red: int = 0, green: int = 0, blue: int = 0, brightness: int =0):
+        def limit_to_8bits(value):
+            return value & 0xFF
+
+        self.RED = limit_to_8bits(red)
+        self.BLUE = limit_to_8bits(blue)
+        self.GREEN = limit_to_8bits(green)
+        self.BRIGHTNESS = limit_to_8bits(brightness)
 
     def output_bytes(self) -> bytes:
-        if self.BRIGHTNESS >= 100:
-            self.BRIGHTNESS = 100
 
         # Calculate RGB values with brightness adjustment
-        red_value = int(self.RED * self.BRIGHTNESS/100 )
-        green_value = int(self.GREEN * self.BRIGHTNESS/100)
-        blue_value = int(self.BLUE * self.BRIGHTNESS/100)
+        red_value = int(self.RED * self.BRIGHTNESS/255 )
+        green_value = int(self.GREEN * self.BRIGHTNESS/255)
+        blue_value = int(self.BLUE * self.BRIGHTNESS/255)
 
         # Pack RGB values into a 3-byte representation (bytes)
         output = bytes([green_value, red_value, blue_value])
         return output
 
     def colors(self):
-        output: str = str(self.RED) + str(self.GREEN) + str(self.BLUE) + str(self.BRIGHTNESS)
+        output: str = " "+str(self.RED) +" "+ str(self.GREEN) +" "+ str(self.BLUE) +" "+ str(self.BRIGHTNESS)
         return output
     
 @dataclass
