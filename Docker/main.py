@@ -1,5 +1,6 @@
 from led import RGBdata, Neopixel
 import wiringpi
+import spidev
 import argparse
 import requests
 import time
@@ -38,6 +39,10 @@ wiringpi.wiringPiSetup()
 SPIchannel = 0
 SPIHz = 625000
 wiringpi.wiringPiSPISetup(SPIchannel, SPIHz)
+
+spi = spidev.SpiDev()
+spi.open(0,0) # open /dev/spidev0.0
+
 leds = Neopixel(1000000)
 leds.fill(RGBdata(255,255,255,100))
 print(leds.colors()) 
