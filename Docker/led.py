@@ -71,7 +71,7 @@ class Neopixel:
                 if ((color[byte_index] >> bit_index) & 0x01) == 1:
                     outputArray[index] = 0b11111000  # store 1
                 else:
-                    outputArray[index] = 0b11000000 # store 0
+                    outputArray[index] = 0b11100000 # store 0
                 index += 1
 
         return outputArray

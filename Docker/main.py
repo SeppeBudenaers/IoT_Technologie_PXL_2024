@@ -44,18 +44,18 @@ spi.max_speed_hz = 6250000
 leds = Neopixel(1)
 
 # Choose one of the methods to get API_KEY
-API_KEY = GetAPIKEYOS()
-print(API_KEY)
-API_KEY = GetAPIKEYARG()
-print(API_KEY)
-API_KEY = GetAPIKEYFile("secretfile.txt")
-print(API_KEY)
+# API_KEY = GetAPIKEYOS()
+# print(API_KEY)
+# API_KEY = GetAPIKEYARG()
+# print(API_KEY)
+# API_KEY = GetAPIKEYFile("secretfile.txt")
+# print(API_KEY)
 
-url = 'http://iot.pxl.bjth.xyz'
+# url = 'http://iot.pxl.bjth.xyz'
 
-headers = {
-    '-h':"X-Api-Key: "+str(API_KEY)
-}
+# headers = {
+#     '-h':"X-Api-Key: "+str(API_KEY)
+# }
 
 # main loop
 try:  
