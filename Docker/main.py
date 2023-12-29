@@ -1,5 +1,5 @@
 from led import RGBdata, Neopixel
-import wiringpi
+# import wiringpi
 import spidev
 import argparse
 import requests
@@ -33,7 +33,7 @@ def GetAPIKEYFile(file_path):
 
 # GPIO Init 
 # ledPin = 5
-wiringpi.wiringPiSetup()
+# wiringpi.wiringPiSetup()
 # wiringpi.pinMode(ledPin,1) 
 #SPI / ws2812 init
 spi = spidev.SpiDev()
