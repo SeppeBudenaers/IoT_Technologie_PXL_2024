@@ -75,18 +75,19 @@ try:
     buf = bytes(leds.ws2812_Data())
     print(buf)
     spi.writebytes2(buf)
+    time.sleep(1)
 
     leds.fill(RGBdata(255,0,0,255))     
     buf = bytes(leds.ws2812_Data())
     print(buf)
     spi.writebytes2(buf)
-    time.sleep(10)
+    time.sleep(3)
 
     leds.fill(RGBdata(0,255,0,255))
     buf = bytes(leds.ws2812_Data())
     print(buf)
     spi.writebytes2(buf)
-    time.sleep(10)
+    time.sleep(3)
 
     leds.fill(RGBdata(0,0,255,255))
     buf = bytes(leds.ws2812_Data())
