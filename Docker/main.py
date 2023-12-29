@@ -41,10 +41,8 @@ spi.open(0,0) # open /dev/spidev0.0
 spi.mode = 0b00
 spi.max_speed_hz = 6250000
 
-leds = Neopixel(10)
+leds = Neopixel(1)
 leds.fill(RGBdata(255,0,255,70))
-print(leds.colors()) 
-leds.set_pixel(2,RGBdata(255,0,0,50))
 # Choose one of the methods to get API_KEY
 API_KEY = GetAPIKEYOS()
 print(API_KEY)
