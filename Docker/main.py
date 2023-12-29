@@ -42,7 +42,7 @@ spi.mode = 0b00
 spi.max_speed_hz = 6250000
 
 leds = Neopixel(1)
-leds.fill(RGBdata(255,0,255,70))
+leds.fill(RGBdata(255,0,0,100))
 # Choose one of the methods to get API_KEY
 API_KEY = GetAPIKEYOS()
 print(API_KEY)
@@ -71,10 +71,18 @@ try:
     #     sleep(1)                 # wait half a second  
     #     # wiringpi.digitalWrite(ledPin, 0)         # set GPIO24 to 0/GPIO.LOW/False  
     #     sleep(1)                 # wait half a second
-    #print(bin(leds.outputData()))
-    print(leds.colors())      
+    #print(bin(leds.outputData()))      
     buf = bytes(leds.ws2812_Data())
-    print(buf)
+    spi.xfer2(buf)
+    time.sleep(10)
+
+    leds.fill(RGBdata(255,0,255,70))
+    buf = bytes(leds.ws2812_Data())
+    spi.xfer2(buf)
+    time.sleep(10)
+
+    leds.fill(RGBdata(255,0,255,70))
+    buf = bytes(leds.ws2812_Data())
     spi.xfer2(buf)
 except KeyboardInterrupt:          # trap a CTRL+C keyboard interrupt  
     GPIO.cleanup()                 # resets all GPIO ports used by this program
