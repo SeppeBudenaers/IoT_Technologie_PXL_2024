@@ -72,19 +72,19 @@ try:
     #     # wiringpi.digitalWrite(ledPin, 0)         # set GPIO24 to 0/GPIO.LOW/False  
     #     sleep(1)                 # wait half a second
     #print(bin(leds.outputData())) 
-    leds.fill(RGBdata(255,0,0,100))     
+    leds.fill(RGBdata(255,0,0,255))     
     buf = bytes(leds.ws2812_Data())
     print(buf)
     spi.xfer2(buf)
     time.sleep(10)
 
-    leds.fill(RGBdata(0,255,0,100))
+    leds.fill(RGBdata(0,255,0,255))
     buf = bytes(leds.ws2812_Data())
     print(buf)
     spi.xfer2(buf)
     time.sleep(10)
 
-    leds.fill(RGBdata(0,0,255,100))
+    leds.fill(RGBdata(0,0,255,255))
     buf = bytes(leds.ws2812_Data())
     print(buf)
     spi.xfer2(buf)
