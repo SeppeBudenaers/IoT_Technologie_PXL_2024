@@ -39,7 +39,7 @@ def GetAPIKEYFile(file_path):
 spi = spidev.SpiDev()
 spi.open(0,0) # open /dev/spidev0.0
 spi.mode = 0b00
-spi.max_speed_hz = 6250000 * 2
+spi.max_speed_hz = 6250000
 
 leds = Neopixel(1)
 
@@ -75,19 +75,19 @@ try:
     leds.fill(RGBdata(255,0,0,255))     
     buf = bytes(leds.ws2812_Data())
     print(buf)
-    spi.xfer2(buf)
+    spi.writebytes2(buf)
     time.sleep(10)
 
     leds.fill(RGBdata(0,255,0,255))
     buf = bytes(leds.ws2812_Data())
     print(buf)
-    spi.xfer2(buf)
+    spi.writebytes2(buf)
     time.sleep(10)
 
     leds.fill(RGBdata(0,0,255,255))
     buf = bytes(leds.ws2812_Data())
     print(buf)
-    spi.xfer2(buf)
+    spi.writebytes2(buf)
 except KeyboardInterrupt:          # trap a CTRL+C keyboard interrupt  
     GPIO.cleanup()                 # resets all GPIO ports used by this program
 
