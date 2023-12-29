@@ -74,16 +74,19 @@ try:
     #print(bin(leds.outputData())) 
     leds.fill(RGBdata(255,0,0,100))     
     buf = bytes(leds.ws2812_Data())
+    print(buf)
     spi.xfer2(buf)
     time.sleep(10)
 
     leds.fill(RGBdata(0,255,0,100))
     buf = bytes(leds.ws2812_Data())
+    print(buf)
     spi.xfer2(buf)
     time.sleep(10)
 
     leds.fill(RGBdata(0,0,255,100))
     buf = bytes(leds.ws2812_Data())
+    print(buf)
     spi.xfer2(buf)
 except KeyboardInterrupt:          # trap a CTRL+C keyboard interrupt  
     GPIO.cleanup()                 # resets all GPIO ports used by this program
