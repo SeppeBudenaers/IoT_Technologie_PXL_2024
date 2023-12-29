@@ -25,7 +25,7 @@ class RGBdata:
         blue_value = int(self.BLUE * self.BRIGHTNESS/255)
 
         # Pack RGB values into a 3-byte representation (bytes)
-        output = bytes([green_value, red_value, blue_value])
+        output = bytes([blue_value, red_value, green_value])
         return output
 
     def colors(self):
