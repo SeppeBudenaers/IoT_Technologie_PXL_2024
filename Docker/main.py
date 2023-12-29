@@ -39,7 +39,7 @@ def GetAPIKEYFile(file_path):
 spi = spidev.SpiDev()
 spi.open(0,0) # open /dev/spidev0.0
 spi.mode = 0b00
-spi.max_speed_hz = 625000
+spi.max_speed_hz = 6250000
 
 leds = Neopixel(10)
 leds.fill(RGBdata(255,0,255,70))
