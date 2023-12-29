@@ -36,14 +36,12 @@ def GetAPIKEYFile(file_path):
 wiringpi.wiringPiSetup()
 # wiringpi.pinMode(ledPin,1) 
 #SPI / ws2812 init
-SPIchannel = 0
-SPIHz = 625000
-wiringpi.wiringPiSPISetup(SPIchannel, SPIHz)
-
 spi = spidev.SpiDev()
 spi.open(0,0) # open /dev/spidev0.0
+spi.mode = 0b00
+spi.max_speed_hz = 625000
 
-leds = Neopixel(1000000)
+leds = Neopixel(10)
 leds.fill(RGBdata(255,255,255,100))
 print(leds.colors()) 
 leds.set_pixel(2,RGBdata(255,0,0,50))
@@ -79,7 +77,7 @@ try:
     print(leds.colors())      
     buf = bytes(leds.ws2812_Data())
     print(buf)
-    wiringpi.wiringPiSPIDataRW(SPIchannel, buf)
+    spi.xfer2(buf)
 except KeyboardInterrupt:          # trap a CTRL+C keyboard interrupt  
     GPIO.cleanup()                 # resets all GPIO ports used by this program
 

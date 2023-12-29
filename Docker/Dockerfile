@@ -3,7 +3,7 @@ FROM python:latest
 
 #adding libraries
 RUN pip install requests
-RUN pip install wiringpi
+# RUN pip install wiringpi
 RUN pip install spidev
 #RUN pip install RPi.GPIO
 
