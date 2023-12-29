@@ -42,7 +42,7 @@ spi.mode = 0b00
 spi.max_speed_hz = 625000
 
 leds = Neopixel(10)
-leds.fill(RGBdata(255,255,255,100))
+leds.fill(RGBdata(255,0,255,70))
 print(leds.colors()) 
 leds.set_pixel(2,RGBdata(255,0,0,50))
 # Choose one of the methods to get API_KEY
