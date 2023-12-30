@@ -2,8 +2,7 @@ name: Building_docker
 
 on:
   push:
-    branches:
-      -LED-test
+
 jobs:
   build:
     runs-on: ubuntu-latest
