@@ -1,4 +1,4 @@
-# total 10/20
+# total 11/20
 ## Git 0/7
 - [ ] **The group is capable of showing they worked as a unit, and not as individuals**
 - [ ] The group has good automation hygiene (no manual tasks, plenty of automation, …)
@@ -20,7 +20,7 @@
 
 ## Aplication 3/7
 - [x] **The application software is capable of speaking to an HTTPS CRUD endpoint**
-- [ ] **The application software is well written (clean code)**
+- [X] **The application software is well written (clean code)**
 - [ ] The application software uses Xilinx SDK code*
 - [ ] The application software is written in a consistent style
 - [ ] There is automation to lint the application software
@@ -28,13 +28,13 @@
 - [x] **The application software is automatically packaged**
 
 
-## extra  2/7
+## extra  3/7
 - [x] The application software is packaged in either a [Docker](https://www.docker.com/) format, or a [DEB format](https://www.debian.org/doc/manuals/debian-faq/pkg-basics.en.html)
 - [ ] The application software is packaged in [Nix](https://nixos.org/)
 - [ ] The IoT device is capable of being monitored (node_exporter)
 - [ ] The application software uses Python and uses [Poetry](https://python-poetry.org/) as a dependency manager
 - [x] The IoT device drives external hardware
-- [ ] A Linux kernel module drives the external hardware*
+- [X] A Linux kernel module drives the external hardware*
 - [ ] The HTTPS CRUD endpoint is self-hosted (AWS, Azure, on-premise, …)
 
 ## things I feel deserve extra points 1/1
