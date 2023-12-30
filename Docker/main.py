@@ -16,10 +16,7 @@ def GetAPIKEYFile(file_path):
     except Exception as e:
         print(f"An error occurred: {e}")
 
-leds = Neopixel(1)
-leds.fill(RGBdata(300, 200, 0, 100))
-print(leds.colors())
-
+#api 
 API_KEY = GetAPIKEYFile("secretfile.txt")
 print(API_KEY)
 url = 'http://iot.pxl.bjth.xyz/api/v1/LED'
@@ -27,11 +24,22 @@ headers = {
     'X-Api-Key': str(API_KEY)  # Fix the header format
 }
 
+#SPI
+spi = spidev.SpiDev()
+spi.open(0,0) # open /dev/spidev0.0
+spi.mode = 0b00
+spi.max_speed_hz = 6000000*2
+
+#NeoPixel
+leds = Neopixel(1)
+leds.fill(RGBdata(300, 200, 0, 100))
+print(leds.colors())
+
 # main loop
 data = {
     "R": 255,
-    "G": 0,
-    "B": 255,
+    "G": 50,
+    "B": 0,
     "Brightness": 255
 }
 RGBSend = requests.put(url, json=data, headers=headers)
@@ -45,3 +53,6 @@ if RGBRecieve.status_code != 200:
 LED = json.loads(RGBRecieve.json())
 leds.fill(RGBdata(LED['R'], LED['G'], LED['B'], LED['Brightness']))
 print(leds.colors())
+buf = bytes(leds.ws2812_Data())
+print(buf)
+spi.writebytes2(buf)
