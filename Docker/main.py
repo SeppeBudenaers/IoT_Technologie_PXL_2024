@@ -1,5 +1,6 @@
-
-import RPi.GPIO as GPIO            # import RPi.GPIO module     
+from led import RGBdata, Neopixel
+# import wiringpi
+import spidev
 import argparse
 import requests
 import time
@@ -31,38 +32,69 @@ def GetAPIKEYFile(file_path):
         print(f"An error occurred: {e}")
 
 # GPIO Init 
-GPIO.setmode(GPIO.BCM)             # choose BCM or BOARD  
-GPIO.setup(24, GPIO.OUT)           # set GPIO24 as an output   
+# ledPin = 5
+# wiringpi.wiringPiSetup()
+# wiringpi.pinMode(ledPin,1) 
+#SPI / ws2812 init
+spi = spidev.SpiDev()
+spi.open(0,0) # open /dev/spidev0.0
+spi.mode = 0b00
+spi.max_speed_hz = 6000000*2
+
+leds = Neopixel(1)
 
 # Choose one of the methods to get API_KEY
-API_KEY = GetAPIKEYOS()
-print(API_KEY)
-API_KEY = GetAPIKEYARG()
-print(API_KEY)
-API_KEY = GetAPIKEYFile("secretfile.txt")
-print(API_KEY)
+# API_KEY = GetAPIKEYOS()
+# print(API_KEY)
+# API_KEY = GetAPIKEYARG()
+# print(API_KEY)
+# API_KEY = GetAPIKEYFile("secretfile.txt")
+# print(API_KEY)
 
-url = 'http://iot.pxl.bjth.xyz'
+# url = 'http://iot.pxl.bjth.xyz'
 
-headers = {
-    '-h':"X-Api-Key: "+str(API_KEY)
-}
+# headers = {
+#     '-h':"X-Api-Key: "+str(API_KEY)
+# }
 
 # main loop
 try:  
-    for i in  range (0,10):
-        data = {
-            "id": time.time(),
-            "value": 25.5,
-            "scale": "F"
-        }
-        response = requests.put(url, json=data, headers=headers)
-        print(response)
-        GPIO.output(24, 1)         # set GPIO24 to 1/GPIO.HIGH/True  
-        sleep(1)                 # wait half a second  
-        GPIO.output(24, 0)         # set GPIO24 to 0/GPIO.LOW/False  
-        sleep(1)                 # wait half a second  
-  
+    # for i in  range (0,10):
+    #     data = {
+    #         "id": time.time(),
+    #         "value": 25.5,
+    #         "scale": "F"
+    #     }
+    #     response = requests.put(url, json=data, headers=headers)
+    #     print(response)
+    #     # wiringpi.digitalWrite(ledPin, 1)         # set GPIO24 to 1/GPIO.HIGH/True  
+    #     sleep(1)                 # wait half a second  
+    #     # wiringpi.digitalWrite(ledPin, 0)         # set GPIO24 to 0/GPIO.LOW/False  
+    #     sleep(1)                 # wait half a second
+    #print(bin(leds.outputData()))
+    buf = bytes(leds.ws2812_Data())
+    print(buf)
+    spi.writebytes2(buf)
+    time.sleep(1)
+
+    leds.fill(RGBdata(255,0,0,255))     
+    buf = bytes(leds.ws2812_Data())
+    print(buf)
+    spi.writebytes2(buf)
+    time.sleep(3)
+
+    leds.fill(RGBdata(0,0,255,255))
+    buf = bytes(leds.ws2812_Data())
+    print(buf)
+    spi.writebytes2(buf)
+    time.sleep(3)
+
+    leds.fill(RGBdata(0,255,0,255))
+    buf = bytes(leds.ws2812_Data())
+    print(buf)
+    spi.writebytes2(buf)
 except KeyboardInterrupt:          # trap a CTRL+C keyboard interrupt  
     GPIO.cleanup()                 # resets all GPIO ports used by this program
+
+
 
