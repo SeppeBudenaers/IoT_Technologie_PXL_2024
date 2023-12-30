@@ -54,6 +54,9 @@ try:
         RGBRecieve = session.get(url, headers=headers, timeout=2)
         if RGBRecieve.status_code != 408:
             RGBRecieve.raise_for_status()  # This will raise an HTTPError for bad responses (status codes 4xx and 5xx)
+        else: 
+            print('TIMED OUT')
+            
         LED = json.loads(RGBRecieve.json())
         
         newData = RGBdata(LED['R'], LED['G'], LED['B'], LED['Brightness'])
