@@ -2,10 +2,8 @@
 FROM python:latest
 
 #adding libraries
-RUN pip install requests
-# RUN pip install wiringpi
+RUN pip install requests urllib3
 RUN pip install spidev
-#RUN pip install RPi.GPIO
 
 
 # Copying the main.py into the /usr/app/src/main.py

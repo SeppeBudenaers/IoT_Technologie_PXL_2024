@@ -6,12 +6,8 @@ import time
 from time import sleep
 import os
 
-leds = Neopixel(1)
-leds.fill(RGBdata(300,200,0,100))
-print(leds.colors()) 
-
-API_KEY = 1222
-url = 'http://localhost:8080/api/v1/LED'
+API_KEY = #your api key
+url = 'http://iot.pxl.bjth.xyz/api/v1/LED'
 headers = {
     'X-Api-Key': str(API_KEY)  # Fix the header format
 }
@@ -27,10 +23,3 @@ RGBSend = requests.put(url, json=data, headers=headers)
 if RGBSend.status_code != 200:
     print("error : "+ str(RGBSend.status_code))
 
-RGBRecieve = requests.get(url, headers=headers)
-if RGBRecieve.status_code != 200:
-    print("error : "+ str(RGBRecieve.status_code))
-
-LED = json.loads(RGBRecieve.json())
-leds.fill(RGBdata(LED['R'],LED['G'],LED['B'],LED['Brightness']))
-print(leds.colors()) 
