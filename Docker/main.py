@@ -1,4 +1,5 @@
 from led import RGBdata, Neopixel
+import spidev
 import argparse
 import requests
 import json
