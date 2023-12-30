@@ -6,12 +6,23 @@ import time
 from time import sleep
 import os
 
+def GetAPIKEYFile(file_path):
+    try:
+        with open(file_path, 'r') as file:
+            content = file.read()
+            return content
+    except FileNotFoundError:
+        print(f"File not found: {file_path}")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
 leds = Neopixel(1)
 leds.fill(RGBdata(300,200,0,100))
 print(leds.colors()) 
 
-API_KEY = 1222
-url = 'http://localhost:8080/api/v1/LED'
+API_KEY = GetAPIKEYFile("secretfile.txt")
+print(API_KEY)
+url = 'http://iot.pxl.bjth.xyz/api/v1/LED'
 headers = {
     'X-Api-Key': str(API_KEY)  # Fix the header format
 }
