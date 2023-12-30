@@ -35,8 +35,8 @@ spi.max_speed_hz = 6000000*2
 leds = Neopixel(1)
 leds.fill(RGBdata(300, 200, 0, 100))
 print(leds.colors())
-oldData: RGBdata
-newData: RGBdata
+oldData: RGBdata(0,0,0,0)
+newData: RGBdata(0,0,0,0)
 # main loop
 try:
     while(1):
