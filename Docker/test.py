@@ -6,8 +6,7 @@ import time
 from time import sleep
 import os
 
-API_KEY = GetAPIKEYFile("secretfile.txt")
-print(API_KEY)
+API_KEY = #your api key
 url = 'http://iot.pxl.bjth.xyz/api/v1/LED'
 headers = {
     'X-Api-Key': str(API_KEY)  # Fix the header format

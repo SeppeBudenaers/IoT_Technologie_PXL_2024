@@ -38,7 +38,7 @@ print(leds.colors())
 
 # main loop
 try:
-    while(true):
+    while(1):
         RGBRecieve = requests.get(url, headers=headers)
         RGBRecieve.raise_for_status()  # This will raise an HTTPError for bad responses (status codes 4xx and 5xx)
 
