@@ -35,19 +35,26 @@ spi.max_speed_hz = 6000000*2
 leds = Neopixel(1)
 leds.fill(RGBdata(300, 200, 0, 100))
 print(leds.colors())
-
+oldData: RGBdata
+newData: RGBdata
 # main loop
 try:
     while(1):
-        RGBRecieve = requests.get(url, headers=headers)
+        time.sleep(0.5)
+        
+        RGBRecieve = requests.get(url, headers=headers, timeout=2)
         RGBRecieve.raise_for_status()  # This will raise an HTTPError for bad responses (status codes 4xx and 5xx)
-
         LED = json.loads(RGBRecieve.json())
-        leds.fill(RGBdata(LED['R'], LED['G'], LED['B'], LED['Brightness']))
-        print(leds.colors())
-        buf = bytes(leds.ws2812_Data())
-        print(buf)
-        spi.writebytes2(buf)
+        
+        newData = RGBdata(LED['R'], LED['G'], LED['B'], LED['Brightness'])
+        
+        if newData != oldData:
+            leds.fill(newData)
+            oldData = newData
+            print(leds.colors())
+            buf = bytes(leds.ws2812_Data())
+            print(buf)
+            spi.writebytes2(buf)
 
 except requests.exceptions.RequestException as e:
     print("Request failed:", str(e))
