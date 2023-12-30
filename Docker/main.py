@@ -1,68 +1,77 @@
-
-import RPi.GPIO as GPIO            # import RPi.GPIO module     
+from led import RGBdata, Neopixel
+import spidev
 import argparse
 import requests
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
+import json
 import time
 from time import sleep
 import os
 
-def GetAPIKEYOS():
-    try:
-        print(os.environ)
-        API_KEY = os.environ.get('API_KEY')
-        return API_KEY
-    except KeyError:
-        print("Environmental Key Does not exist")
-
-def GetAPIKEYARG():
-    parser = argparse.ArgumentParser(description='IOT program')
-    parser.add_argument('API_KEY', metavar='API_KEY', type=str, help='enter your API key')
-    args = parser.parse_args()
-    return args.API_KEY
-
 def GetAPIKEYFile(file_path):
     try:
         with open(file_path, 'r') as file:
-            content = file.read()
+            content = file.read().strip()  # Remove leading/trailing whitespaces
             return content
     except FileNotFoundError:
         print(f"File not found: {file_path}")
     except Exception as e:
         print(f"An error occurred: {e}")
 
-# GPIO Init 
-GPIO.setmode(GPIO.BCM)             # choose BCM or BOARD  
-GPIO.setup(24, GPIO.OUT)           # set GPIO24 as an output   
+#api 
+API_KEY = GetAPIKEYFile("secretfile.txt") # Getting the apikey from docker secrets
+url = 'http://iot.pxl.bjth.xyz/api/v1/LED'# the api url
+headers = {'X-Api-Key': str(API_KEY)}
 
-# Choose one of the methods to get API_KEY
-API_KEY = GetAPIKEYOS()
-print(API_KEY)
-API_KEY = GetAPIKEYARG()
-print(API_KEY)
-API_KEY = GetAPIKEYFile("secretfile.txt")
-print(API_KEY)
+# Session with retry logic
+session = requests.Session()
+retry = Retry(total=3, backoff_factor=0.5, status_forcelist=[500, 502, 503, 504])
+adapter = HTTPAdapter(max_retries=retry)
+session.mount('http://', adapter)
+session.mount('https://', adapter)
 
-url = 'http://iot.pxl.bjth.xyz'
+#SPI
+spi = spidev.SpiDev()
+spi.open(0,0) # open /dev/spidev0.0
+spi.mode = 0b00
+spi.max_speed_hz = 6000000*2
 
-headers = {
-    '-h':"X-Api-Key: "+str(API_KEY)
-}
+#NeoPixel
+leds = Neopixel(1)
+leds.fill(RGBdata(255, 200, 0, 100))
+print(leds.colors())
+oldData = RGBdata(0,0,0,0)
+newData = RGBdata(0,0,0,0)
 
 # main loop
-try:  
-    for i in  range (0,10):
-        data = {
-            "id": time.time(),
-            "value": 25.5,
-            "scale": "F"
-        }
-        response = requests.put(url, json=data, headers=headers)
-        print(response)
-        GPIO.output(24, 1)         # set GPIO24 to 1/GPIO.HIGH/True  
-        sleep(1)                 # wait half a second  
-        GPIO.output(24, 0)         # set GPIO24 to 0/GPIO.LOW/False  
-        sleep(1)                 # wait half a second  
-  
-except KeyboardInterrupt:          # trap a CTRL+C keyboard interrupt  
-    GPIO.cleanup()                 # resets all GPIO ports used by this program
-
+try:
+    while(1):
+        time.sleep(0.5) # A delay for not ddos'ing bryan's server
+        
+        RGBRecieve = session.get(url, headers=headers, timeout=2) # sending GET request to API
+        if RGBRecieve.status_code != 408: # timeout response
+            RGBRecieve.raise_for_status()  # This will raise an HTTPError for bad responses (status codes 4xx and 5xx)
+            
+        LED = json.loads(RGBRecieve.json()) # converting json to struct
+        
+        newData = RGBdata(LED['R'], LED['G'], LED['B'], LED['Brightness']) # converting struct to RGBdata dataclass
+        
+        if newData != oldData: #ignoring same data
+            
+            leds.fill(newData) # changing color
+            spi.writebytes2(leds.ws2812_Data())            
+            oldData = newData 
+            
+# error handling
+except requests.exceptions.RequestException as e:
+    print("Request failed:", str(e))
+except json.JSONDecodeError as e:
+    print("JSON decoding failed:", str(e))
+except requests.exceptions.HTTPError as e:
+    print("HTTP error:", str(e))
+except Exception as e:
+    print("An unexpected error occurred:", str(e))
+    
+leds.fill(RGBdata(0,0,0,0))
+spi.writebytes2(leds.ws2812_Data())

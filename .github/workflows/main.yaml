@@ -2,9 +2,7 @@ name: Building_docker
 
 on:
   push:
-    branches:
-      - dev
-      - HTTPS-PUT
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -28,4 +26,4 @@ jobs:
           context: ./Docker
           push: true
           platforms: linux/arm64/v8
-          tags: ${{ secrets.DOCKER_USERNAME }}/iot:dev
+          tags: ${{ secrets.DOCKER_USERNAME }}/iot:LED
