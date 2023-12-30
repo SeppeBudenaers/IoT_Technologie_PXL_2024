@@ -74,4 +74,4 @@ class Neopixel:
                     outputArray[index] = 0b11100000 # store 0
                 index += 1
 
-        return outputArray
+        return bytes(outputArray)
