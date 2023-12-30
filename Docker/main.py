@@ -37,23 +37,23 @@ leds.fill(RGBdata(300, 200, 0, 100))
 print(leds.colors())
 
 # main loop
-data = {
-    "R": 255,
-    "G": 50,
-    "B": 0,
-    "Brightness": 255
-}
-RGBSend = requests.put(url, json=data, headers=headers)
-if RGBSend.status_code != 200:
-    print("error : " + str(RGBSend.status_code))
+try:
+    while(true):
+        RGBRecieve = requests.get(url, headers=headers)
+        RGBRecieve.raise_for_status()  # This will raise an HTTPError for bad responses (status codes 4xx and 5xx)
 
-RGBRecieve = requests.get(url, headers=headers)
-if RGBRecieve.status_code != 200:
-    print("error : " + str(RGBRecieve.status_code))
+        LED = json.loads(RGBRecieve.json())
+        leds.fill(RGBdata(LED['R'], LED['G'], LED['B'], LED['Brightness']))
+        print(leds.colors())
+        buf = bytes(leds.ws2812_Data())
+        print(buf)
+        spi.writebytes2(buf)
 
-LED = json.loads(RGBRecieve.json())
-leds.fill(RGBdata(LED['R'], LED['G'], LED['B'], LED['Brightness']))
-print(leds.colors())
-buf = bytes(leds.ws2812_Data())
-print(buf)
-spi.writebytes2(buf)
+except requests.exceptions.RequestException as e:
+    print("Request failed:", str(e))
+except json.JSONDecodeError as e:
+    print("JSON decoding failed:", str(e))
+except requests.exceptions.HTTPError as e:
+    print("HTTP error:", str(e))
+except Exception as e:
+    print("An unexpected error occurred:", str(e))
