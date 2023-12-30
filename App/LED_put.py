@@ -6,7 +6,7 @@ import time
 from time import sleep
 import os
 
-API_KEY = #your api key
+API_KEY = #your API key
 url = 'http://iot.pxl.bjth.xyz/api/v1/LED'
 headers = {
     'X-Api-Key': str(API_KEY)  # Fix the header format
@@ -15,9 +15,9 @@ headers = {
 # main loop
 data = {
     "R": 255,
-    "G": 0,
-    "B": 255,
-    "Brightness": 0
+    "G": 255,
+    "B": 0,
+    "Brightness": 255
 }
 RGBSend = requests.put(url, json=data, headers=headers)
 if RGBSend.status_code != 200:
