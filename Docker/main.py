@@ -2,6 +2,8 @@ from led import RGBdata, Neopixel
 import spidev
 import argparse
 import requests
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 import json
 import time
 from time import sleep
@@ -24,6 +26,13 @@ url = 'http://iot.pxl.bjth.xyz/api/v1/LED'
 headers = {
     'X-Api-Key': str(API_KEY)  # Fix the header format
 }
+# Create a session with retry logic
+session = requests.Session()
+retry = Retry(total=3, backoff_factor=0.5, status_forcelist=[500, 502, 503, 504])
+adapter = HTTPAdapter(max_retries=retry)
+session.mount('http://', adapter)
+session.mount('https://', adapter)
+
 
 #SPI
 spi = spidev.SpiDev()
@@ -42,8 +51,9 @@ try:
     while(1):
         time.sleep(0.5)
         
-        RGBRecieve = requests.get(url, headers=headers, timeout=2)
-        RGBRecieve.raise_for_status()  # This will raise an HTTPError for bad responses (status codes 4xx and 5xx)
+        RGBRecieve = session.get(url, headers=headers, timeout=2)
+        if RGBRecieve.status_code != 408:
+            RGBRecieve.raise_for_status()  # This will raise an HTTPError for bad responses (status codes 4xx and 5xx)
         LED = json.loads(RGBRecieve.json())
         
         newData = RGBdata(LED['R'], LED['G'], LED['B'], LED['Brightness'])
@@ -55,7 +65,7 @@ try:
             buf = bytes(leds.ws2812_Data())
             print(buf)
             spi.writebytes2(buf)
-
+        
 except requests.exceptions.RequestException as e:
     print("Request failed:", str(e))
 except json.JSONDecodeError as e:
