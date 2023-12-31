@@ -4,8 +4,8 @@ write introduction
 
 ## quick start guide 
 - [Setup PI](Docs/Set_Up_Pi.md)
-- [set up dev pc]() 
-- [How to use IoT device]()
+- [set up dev pc](Docs/Set_Up_Dev_PC.md) 
+- [How to use IoT device](Docs/How_to_use_IoT_Device.md)
 
 ## meme 
 
