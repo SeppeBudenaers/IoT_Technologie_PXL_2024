@@ -3,7 +3,7 @@
 write introduction
 
 ## quick start guide 
-- [Setup PI]()
+- [Setup PI](Docs/Set_Up_Pi.md)
 - [set up dev pc]() 
 - [How to use IoT device]()
 
