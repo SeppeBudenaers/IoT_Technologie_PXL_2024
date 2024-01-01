@@ -26,7 +26,7 @@ RunDocker() {
     docker run --privileged --device=/dev/spidev0.0:/dev/spidev0.0 monsterseppe/iot:$dockerTag
 }
 
-while getopts ":ht:p" option; do
+while getopts ":ht:pr" option; do
     case $option in
         h) # Display Help
             Help
@@ -36,10 +36,10 @@ while getopts ":ht:p" option; do
             ;;
         p) # PullDocker
             PullDocker
-            exit;;
+            ;;
         r) #RunDocker
             RunDocker
-            exit;;
+            ;;
         \?) # Invalid option
             echo "Error: Invalid option"
             exit;;
