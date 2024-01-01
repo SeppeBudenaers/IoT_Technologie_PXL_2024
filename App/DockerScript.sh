@@ -2,8 +2,18 @@
 
 dockerTag="latest"
 
-Help() {
-    echo "Sorry, I cannot help."
+Help()
+{
+   # Display Help
+   echo "These are the functions in this script"
+   echo
+   echo "Syntax: scriptTemplate [-h|t|p|r]"
+   echo "options:"
+   echo "h     Print this Help."
+   echo "t     Enter a tag for the monsterseppe/iot: docker."
+   echo "p     Pull the docker."
+   echo "r     Run the docker."
+   echo
 }
 
 PullDocker() {
@@ -26,11 +36,13 @@ while getopts ":ht:p" option; do
             ;;
         p) # PullDocker
             PullDocker
-            ;;
+            exit;;
+        r) #RunDocker
+            RunDocker
+            exit;;
         \?) # Invalid option
             echo "Error: Invalid option"
             exit;;
     esac
 done
 
-RunDocker
