@@ -1,16 +1,19 @@
 #!/bin/bash
 
 dockerTag="latest"
+dockerRepository="monsterseppe/iot"
 bDockerrun=0
+
 Help()
 {
    # Display Help
-   echo "These are the functions in this script"
+   echo "This is a script for pulling, running, and updating active dockers"
    echo
    echo "Syntax: scriptTemplate [-h|t|p|r]"
    echo "options:"
    echo "h     Print this Help."
-   echo "t     Enter a tag for the monsterseppe/iot: docker."
+   echo "c     Choose the container to pull or run"
+   echo "t     Enter a tag for the docker."
    echo "p     Pull the docker."
    echo "r     Run the docker."
    echo "u     Update the docker"
@@ -18,12 +21,12 @@ Help()
 }
 
 PullDocker() {
-    echo "Pulling docker monsterseppe/iot:$dockerTag"
-    docker pull monsterseppe/iot:$dockerTag
+    echo "Pulling docker $dockerRepository:$dockerTag"
+    docker pull $dockerRepository:$dockerTag
 }
 
 CheckContainerID(){
-container_id=$(docker ps --filter "ancestor=monsterseppe/iot:$dockerTag" --format "{{.ID}}")
+container_id=$(docker ps --filter "ancestor=$dockerRepository:$dockerTag" --format "{{.ID}}")
 }
 
 StopDocker(){
@@ -39,11 +42,14 @@ UpdateDocker(){
     StopDocker
 }
 
-while getopts ":ht:pru" option; do
+while getopts ":hc:t:pru" option; do
     case $option in
         h) # Display Help
             Help
             exit;;
+        t) # Option with argument
+            dockerRepository="$OPTARG"
+            ;;
         t) # Option with argument
             dockerTag="$OPTARG"
             ;;
@@ -64,6 +70,6 @@ while getopts ":ht:pru" option; do
 done
 
 if [ $bDockerrun = 1 ]; then
-    echo "Running docker monsterseppe/iot:$dockerTag"
-    docker run --privileged --device=/dev/spidev0.0:/dev/spidev0.0 monsterseppe/iot:$dockerTag
+    echo "Running docker $dockerRepository:$dockerTag"
+    docker run --privileged --device=/dev/spidev0.0:/dev/spidev0.0 $dockerRepository:$dockerTag
 fi
