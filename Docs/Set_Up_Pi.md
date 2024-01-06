@@ -125,7 +125,7 @@ fi
 
 ### creating a `systemd` service
 ```cmd
-sudo bash -c 'echo -e "[Unit]\nDescription=Script to pull docker IOT\nAfter=network-online.target\nWants=network-online.target\n\n[Service]\nExecStart=/usr/local/bin/dockerscript.sh -u -t latest\n\n[Install]\nWantedBy=default.target\n" > /etc/systemd/system/docker-update.service && nano /etc/systemd/system/docker-update.service'
+sudo bash -c 'echo -e "[Unit]\nDescription=Script to pull docker IOT\nAfter=network-online.target\nWants=network-online.target\n\n[Service]\nExecStart=/usr/local/bin/dockerscript.sh -u -t latest\n\n[Install]\nWantedBy=default.target\n" > /etc/systemd/system/docker-update.service'
 ```
 #### or
 ```cmd
@@ -147,6 +147,10 @@ WantedBy=default.target
 ```
 
 ### creating a `systemd` timer
+```cmd
+sudo bash -c 'echo -e "[Unit]\nDescription=Run docker-update.service 2min after boot and 15 minutes\n\n[Timer]\nOnBootSec=2min\nOnCalendar=*:0/15\nPersistent=true\n\n[Install]\nWantedBy=timers.target\n" > /etc/systemd/system/docker-update.timer'
+```
+#### or
 ```cmd
 sudo touch /etc/systemd/system/docker-update.timer
 sudo nano /etc/systemd/system/docker-update.timer
