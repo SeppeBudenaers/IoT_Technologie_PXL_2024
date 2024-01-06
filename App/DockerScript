@@ -9,7 +9,7 @@ Help()
    # Display Help
    echo "This is a script for pulling, running, and updating active dockers"
    echo
-   echo "Syntax: scriptTemplate [-h|t|p|r]"
+   echo "Syntax: scriptTemplate [-h|c|t|p|r|u]"
    echo "options:"
    echo "h     Print this Help."
    echo "c     Choose the container to pull or run"
