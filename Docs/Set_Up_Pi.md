@@ -52,7 +52,28 @@ sudo nano /usr/local/bin/dockerscript.sh
 ```
 #### copy and past this into dockerscript.sh
 
-[dockerscript](App/DockerScript.sh)
+[dockerscript](../App/DockerScript.sh)
+
+### How to use the bash script?
+```mermaid
+graph LR;
+	classDef red stroke:#f00
+    classDef cyan fill:#0ff
+    classDef empty width:0px,height:0px;
+    start([user input]):::red;
+    h[-h help function];
+    t[-t add a docker tag];
+    c[-c choose docker];
+    p[-p pull];
+    u[-u update];
+    r[-r run];
+    start-->h & t & c;
+    choose{<font color=black>OR}:::cyan;
+    t & c --- alpha[ ]:::empty --> choose;
+    choose --- beta[ ]:::empty --> p & u & r;
+    
+
+```
 
 
 ### creating a `systemd` service
