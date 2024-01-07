@@ -9,10 +9,7 @@ we developed an IoT device that is capable of over-the-air updates. The IoT devi
   * How to setup a simple CRUD inside of Azure (partially).
   * How to automate all of this using Github actions.
  
-## Quick start guide 
-- [Setting up Dev environment](Docs/Set_Up_Dev_PC.md) 
-- [Setting up IoT Device (Pi)](Docs/Set_Up_Pi.md)
-- [How to use IoT device](Docs/How_to_use_IoT_Device.md)
+## [Quick start guide](https://github.com/SeppeBudenaers/IoT_Technologie_PXL_2024/wiki) 
 
 # A meme to keep our sanity
 ![image](https://github.com/SeppeBudenaers/IoT_Technologie_PXL_2024/assets/101107875/f6152518-8eed-45db-8248-a9c1e50854f7)
