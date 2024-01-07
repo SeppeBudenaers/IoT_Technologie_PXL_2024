@@ -1,16 +1,21 @@
 # Set Up Dev PC
 
-## SSH
-### generating SSH key (need to safely log in to IoT device)
+## Setting up SSH
 
-## docker
-### creating a docker hub account 
+* Generating SSH key (needed to safely log in to IoT device)
 
-### generating Docker token (this will be used to upload your docker image from github to dockerhub)
+
+
+## Setting up Docker
+
+* Creating a Docker hub account 
+
+* Generating Docker token (this will be used to upload your docker image from github to dockerhub)
 
 ## Github
-### cloning this repository 
 
-### adding github secrets 
+* Cloning this repository 
 
-### running the github action
+* Adding github secrets 
+
+## Running the github action
