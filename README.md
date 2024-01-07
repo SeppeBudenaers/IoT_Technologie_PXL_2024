@@ -7,13 +7,6 @@ write introduction
 - [Setting up IoT Device (Pi)](Docs/Set_Up_Pi.md)
 - [How to use IoT device](Docs/How_to_use_IoT_Device.md)
 
-```mermaid
-graph TD;
-A-->B;
-A-->C;
-B-->D;
-C-->D;
-```
 
 ## meme 
 
