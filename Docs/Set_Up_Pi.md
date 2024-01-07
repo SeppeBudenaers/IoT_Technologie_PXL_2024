@@ -51,77 +51,9 @@ sudo touch /usr/local/bin/dockerscript.sh
 sudo nano /usr/local/bin/dockerscript.sh
 ```
 #### copy and past this into dockerscript.sh
-```bash
-#!/bin/bash
 
-dockerTag="latest"
-bDockerrun=0
-Help()
-{
-   # Display Help
-   echo "These are the functions in this script"
-   echo
-   echo "Syntax: scriptTemplate [-h|t|p|r]"
-   echo "options:"
-   echo "h     Print this Help."
-   echo "t     Enter a tag for the monsterseppe/iot: docker."
-   echo "p     Pull the docker."
-   echo "r     Run the docker."
-   echo "u     Update the docker"
-   echo
-}
+[dockerscript](App/DockerScript.sh)
 
-PullDocker() {
-    echo "Pulling docker monsterseppe/iot:$dockerTag"
-    docker pull monsterseppe/iot:$dockerTag
-}
-
-CheckContainerID(){
-container_id=$(docker ps --filter "ancestor=monsterseppe/iot:$dockerTag" --format "{{.ID}}")
-}
-
-StopDocker(){
-    if [ -n "$container_id" ]; then
-        echo "stopping container with id: $container_id"
-        docker stop $container_id
-    fi
-}
-
-UpdateDocker(){
-    PullDocker
-    CheckContainerID
-    StopDocker
-}
-
-while getopts ":ht:pru" option; do
-    case $option in
-        h) # Display Help
-            Help
-            exit;;
-        t) # Option with argument
-            dockerTag="$OPTARG"
-            ;;
-        p) # PullDocker
-            PullDocker
-            ;;
-        u) #UpdateDocker
-            UpdateDocker
-            bDockerrun=1
-            ;;
-        r) #RunDocker
-            bDockerrun=1
-            ;;
-        \?) # Invalid option
-            echo "Error: Invalid option"
-            exit;;
-    esac
-done
-
-if [ $bDockerrun = 1 ]; then
-    echo "Running docker monsterseppe/iot:$dockerTag"
-    docker run -d --privileged --device=/dev/spidev0.0:/dev/spidev0.0 monsterseppe/iot:$dockerTag
-fi
-```
 
 ### creating a `systemd` service
 ```cmd
