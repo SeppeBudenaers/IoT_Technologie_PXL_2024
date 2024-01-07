@@ -4,25 +4,58 @@
 
 ### logging into Pi via SSH
 
-
-
-### generating keys 
-
-
-
+```cmd
+ssh [user]@[Ip of the device]
+```
 ### authorizing Dev PC key 
 
-
+```cmd
+sudo mkdir /home/[user]/.ssh && sudo touch /home/[user]/.ssh/authorized_keys && sudo nano /home/[user]/.ssh/authorized_keys
+```
 
 ### SSH login only
 
+1. **Edit the SSH configuration file**
 
+	```cmd
+	sudo nano /etc/ssh/sshd_config
+	```
+
+2. Look for the following line in the configuration file:
+   ```bash
+   #PasswordAuthentication yes
+   ```
+
+   Uncomment and modify it to:
+
+   ```bash
+   PasswordAuthentication no
+   ```
+
+3. **Restart the SSH service**
+
+   ```cmd
+   sudo systemctl restart ssh
+   ```
 
 ## SPI
 
 ### enabling spi 
 
+1. **Open the Raspberry Pi Configuration Tool**
 
+   ```cmd
+   sudo raspi-config
+   ```
+
+2. **Navigate to Interfacing Options**
+
+3. **Select SPI and Enable SPI** 
+
+4. Reboot
+   ```cmd
+   sudo reboot
+   ```
 
 ## Docker
 
@@ -74,6 +107,7 @@ graph LR;
     
 
 ```
+
 
 
 ### creating a `systemd` service
