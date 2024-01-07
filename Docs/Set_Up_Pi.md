@@ -70,7 +70,7 @@ graph LR;
     start-->h & t & c;
     choose{<font color=black>OR}:::cyan;
     t & c --- alpha[ ]:::empty --> choose;
-    choose --- beta[ ]:::empty --> p & u & r;
+    choose --> p & u & r;
     
 
 ```
