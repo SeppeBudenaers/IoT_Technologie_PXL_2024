@@ -1,4 +1,4 @@
-# total 11/20
+# Total grade: 11/20
 ## Git 0/7
 - [ ] **The group is capable of showing they worked as a unit, and not as individuals**
 - [ ] The group has good automation hygiene (no manual tasks, plenty of automation, …)
@@ -18,7 +18,7 @@
 - [x] An IoT device is capable of being serviced remotely
 
 
-## Aplication 3/7
+## Application 3/7
 - [x] **The application software is capable of speaking to an HTTPS CRUD endpoint**
 - [X] **The application software is well written (clean code)**
 - [ ] The application software uses Xilinx SDK code*
@@ -28,7 +28,7 @@
 - [x] **The application software is automatically packaged**
 
 
-## extra  3/7
+## Extra  3/7
 - [x] The application software is packaged in either a [Docker](https://www.docker.com/) format, or a [DEB format](https://www.debian.org/doc/manuals/debian-faq/pkg-basics.en.html)
 - [ ] The application software is packaged in [Nix](https://nixos.org/)
 - [ ] The IoT device is capable of being monitored (node_exporter)
@@ -37,5 +37,5 @@
 - [X] A Linux kernel module drives the external hardware*
 - [ ] The HTTPS CRUD endpoint is self-hosted (AWS, Azure, on-premise, …)
 
-## things I feel deserve extra points 1/1
+## Things I feel deserve extra points 1/1
 - [x] added a feature writen in golang to the [CRUD endpoint](https://github.com/bryanhonof/iot-api-server/pull/1)
