@@ -2,7 +2,8 @@ name: Building_docker
 
 on:
   push:
-
+    - main
+    - dev
 jobs:
   build:
     runs-on: ubuntu-latest
